@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@android:drawable/editbox_dropdown_light_frame"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <TextView
+        android:text="PRINTER NAME"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lbinvno"
+        android:textSize="17sp"
+        android:textColor="#ff093bf6"
+        android:paddingLeft="5dp" />
+    <Spinner
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtprinters"
+        android:textSize="17sp"
+        android:paddingLeft="5dp"
+        android:background="@android:drawable/spinner_dropdown_background"
+        android:fitsSystemWindows="false" />
+    <EditText
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtad_printer"
+        android:textColor="#ff140000"
+        android:textSize="17sp"
+        android:paddingLeft="5dp"
+        android:background="@android:drawable/edit_text"
+        android:hint="Bluetooth printer name" />
+    <TextView
+        android:text="PAPER WIDTH"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lbPaper"
+        android:textSize="17sp"
+        android:textColor="#ff093bf6"
+        android:paddingLeft="5dp" />
+    <Spinner
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtSize"
+        android:textSize="17sp"
+        android:paddingLeft="5dp"
+        android:background="@android:drawable/spinner_dropdown_background"
+        android:fitsSystemWindows="false" />
+    <TextView
+        android:text="INVOICE/CASH BILL PREFIX"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lbinvno"
+        android:textSize="17sp"
+        android:paddingLeft="5dp"
+        android:textColor="#ff093bf6" />
+    <EditText
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtad_prefix"
+        android:textSize="17sp"
+        android:paddingLeft="5dp"
+        android:textColor="#ff140000"
+        android:background="@android:drawable/edit_text"
+        android:editable="false" />
+    <TextView
+        android:text="CREDIT NOTE PREFIX"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lbinvno"
+        android:textSize="17sp"
+        android:paddingLeft="5dp"
+        android:textColor="#ff093bf6" />
+    <EditText
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtad_cnprefix"
+        android:textSize="17sp"
+        android:paddingLeft="5dp"
+        android:textColor="#ff140000"
+        android:background="@android:drawable/edit_text"
+        android:editable="false" />
+    <TextView
+        android:text="RECEIPT TITLE"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lbinvno"
+        android:textSize="17sp"
+        android:paddingLeft="5dp"
+        android:textColor="#ff093bf6" />
+    <EditText
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtad_title"
+        android:textSize="17sp"
+        android:paddingLeft="5dp"
+        android:textColor="#ff140000"
+        android:background="@android:drawable/edit_text" />
+    <TableLayout
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tableLayout1">
+        <TableRow
+            android:id="@+id/tableRow1">
+            <Button
+                android:text="SAVE"
+                android:layout_column="0"
+                android:id="@+id/ad_bSave" />
+            <Button
+                android:text="Cancel"
+                android:layout_column="1"
+                android:id="@+id/ad_Cancel" />
+        </TableRow>
+        <TableRow
+            android:id="@+id/tableRow2">
+        </TableRow>
+    </TableLayout>
+</LinearLayout>

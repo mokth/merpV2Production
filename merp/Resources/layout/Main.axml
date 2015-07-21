@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="10dip"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:text="INVOICE"
+            style="@style/XamButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/butSecond"
+            android:drawableLeft="@drawable/shop" />
+        <Button
+            android:text="CREDIT NOTE"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:drawableLeft="@drawable/shop"
+            android:id="@+id/butcnnote" />
+        <Button
+            android:text="TRANSACTION LIST"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:drawableLeft="@drawable/report"
+            android:id="@+id/butInvlist" />
+        <Button
+            android:text="MASTER ITEM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:drawableLeft="@drawable/item"
+            android:id="@+id/butMaster" />
+        <Button
+            android:text="DOWNLOAD/UPLOAD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:drawableLeft="@drawable/download"
+            android:id="@+id/butDown" />
+        <Button
+            android:text="SETTINGS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:drawableLeft="@drawable/download"
+            android:id="@+id/butsetting" />
+        <Button
+            android:text="ABOUT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:drawableLeft="@drawable/about"
+            android:id="@+id/butAbout" />
+        <Button
+            android:text="EXIT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:drawableLeft="@drawable/exit"
+            android:id="@+id/butOut" />
+    </LinearLayout>
+</ScrollView>
