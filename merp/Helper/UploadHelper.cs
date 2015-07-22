@@ -101,7 +101,7 @@ namespace wincom.mobile.erp
 			using (var db = new SQLite.SQLiteConnection (pathToDatabase)) {
 				var list1 = db.Table<Invoice> ().Where(x=>x.isUploaded==false)
 					.OrderBy(x=>x.invno)
-					.Take(50)
+					.Take(10)
 					.ToList<Invoice> ();
 				
 				var list2 = db.Table<InvoiceDtls> ().ToList<InvoiceDtls> ();
@@ -145,7 +145,7 @@ namespace wincom.mobile.erp
 			using (var db = new SQLite.SQLiteConnection (pathToDatabase)) {
 				var list1 = db.Table<CNNote> ().Where(x=>x.isUploaded==false)
 					.OrderBy(x=>x.cnno)
-					.Take(50)
+					.Take(10)
 					.ToList<CNNote> ();
 
 				var list2 = db.Table<CNNoteDtls> ().ToList<CNNoteDtls> ();

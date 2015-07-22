@@ -29,12 +29,13 @@ namespace wincom.mobile.erp
 			SetContentView (Resource.Layout.SignIn);
 			// Create your application here
 			EventManagerFacade.Instance.GetEventManager().AddListener(this);
+			pathToDatabase = ((GlobalvarsApp)this.Application).DATABASE_PATH;
 
-			//Button import = FindViewById<Button>(Resource.Id.logimport);
-
-			//import.Click+= (object sender, EventArgs e) => {
-			//	ImportDatabase();
-			//};	
+//			Button import = FindViewById<Button>(Resource.Id.logimport);
+//
+//			import.Click+= (object sender, EventArgs e) => {
+//				ImportDatabase();
+//			};	
 			Button login = FindViewById<Button>(Resource.Id.login);
 			Button bexit = FindViewById<Button>(Resource.Id.exit);
 			EditText txtcode = FindViewById<EditText> (Resource.Id.login_code);
@@ -43,7 +44,7 @@ namespace wincom.mobile.erp
 				Android.OS.Process.KillProcess(Android.OS.Process.MyPid());
 			};
 			//InitializeServiceClient();
-			pathToDatabase = ((GlobalvarsApp)this.Application).DATABASE_PATH;
+
 
 			AdUser user=null;
 			//SQLiteConnection...CreateFile(pathToDatabase);
