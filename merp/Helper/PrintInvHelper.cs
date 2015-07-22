@@ -279,8 +279,8 @@ namespace wincom.mobile.erp
 					}
 					charfont = new Byte[] { 28, 38 };
 					mmOutputStream.Write(charfont, 0, charfont.Length);
-					charfont = new Byte[] { 28, 67,0,48 };
-					mmOutputStream.Write(charfont, 0, charfont.Length);
+					//charfont = new Byte[] { 28, 67,0,48 };
+					//mmOutputStream.Write(charfont, 0, charfont.Length);
 					string test = "";
 					double invTtlAmt =0;
 					double invTtlTax =0;
