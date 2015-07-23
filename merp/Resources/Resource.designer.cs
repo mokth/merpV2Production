@@ -258,8 +258,8 @@ namespace wincom.mobile.erp
 			// aapt resource value: 0x7f0a000c
 			public const int ad_bSave = 2131361804;
 			
-			// aapt resource value: 0x7f0a0080
-			public const int add = 2131361920;
+			// aapt resource value: 0x7f0a0081
+			public const int add = 2131361921;
 			
 			// aapt resource value: 0x7f0a0047
 			public const int btnItem_OK = 2131361863;
@@ -333,8 +333,8 @@ namespace wincom.mobile.erp
 			// aapt resource value: 0x7f0a001d
 			public const int butupload = 2131361821;
 			
-			// aapt resource value: 0x7f0a0083
-			public const int call = 2131361923;
+			// aapt resource value: 0x7f0a0084
+			public const int call = 2131361924;
 			
 			// aapt resource value: 0x7f0a0048
 			public const int custcode = 2131361864;
@@ -429,23 +429,26 @@ namespace wincom.mobile.erp
 			// aapt resource value: 0x7f0a0068
 			public const int login_userName = 2131361896;
 			
-			// aapt resource value: 0x7f0a007f
-			public const int mainMenu = 2131361919;
-			
-			// aapt resource value: 0x7f0a007b
-			public const int mmenu_back = 2131361915;
+			// aapt resource value: 0x7f0a0080
+			public const int mainMenu = 2131361920;
 			
 			// aapt resource value: 0x7f0a007c
-			public const int mmenu_clear = 2131361916;
+			public const int mmenu_back = 2131361916;
+			
+			// aapt resource value: 0x7f0a007d
+			public const int mmenu_clear = 2131361917;
 			
 			// aapt resource value: 0x7f0a007a
 			public const int mmenu_downcompinfo = 2131361914;
 			
-			// aapt resource value: 0x7f0a007e
-			public const int mmenu_logoff = 2131361918;
+			// aapt resource value: 0x7f0a007b
+			public const int mmenu_downdb = 2131361915;
 			
-			// aapt resource value: 0x7f0a007d
-			public const int mmenu_setting = 2131361917;
+			// aapt resource value: 0x7f0a007f
+			public const int mmenu_logoff = 2131361919;
+			
+			// aapt resource value: 0x7f0a007e
+			public const int mmenu_setting = 2131361918;
 			
 			// aapt resource value: 0x7f0a0011
 			public const int newcninv_no = 2131361809;
@@ -480,29 +483,29 @@ namespace wincom.mobile.erp
 			// aapt resource value: 0x7f0a0066
 			public const int numberPicker1 = 2131361894;
 			
-			// aapt resource value: 0x7f0a0081
-			public const int phone = 2131361921;
-			
-			// aapt resource value: 0x7f0a0085
-			public const int popInvadd = 2131361925;
+			// aapt resource value: 0x7f0a0082
+			public const int phone = 2131361922;
 			
 			// aapt resource value: 0x7f0a0086
-			public const int popInvdelete = 2131361926;
+			public const int popInvadd = 2131361926;
 			
 			// aapt resource value: 0x7f0a0087
-			public const int popInvprint = 2131361927;
+			public const int popInvdelete = 2131361927;
 			
 			// aapt resource value: 0x7f0a0088
-			public const int popInvprint2 = 2131361928;
+			public const int popInvprint = 2131361928;
 			
 			// aapt resource value: 0x7f0a0089
-			public const int popadd = 2131361929;
-			
-			// aapt resource value: 0x7f0a008b
-			public const int popdelete = 2131361931;
+			public const int popInvprint2 = 2131361929;
 			
 			// aapt resource value: 0x7f0a008a
-			public const int popedit = 2131361930;
+			public const int popadd = 2131361930;
+			
+			// aapt resource value: 0x7f0a008c
+			public const int popdelete = 2131361932;
+			
+			// aapt resource value: 0x7f0a008b
+			public const int popedit = 2131361931;
 			
 			// aapt resource value: 0x7f0a0051
 			public const int printed = 2131361873;
@@ -513,11 +516,11 @@ namespace wincom.mobile.erp
 			// aapt resource value: 0x7f0a0063
 			public const int printsumm_cancel = 2131361891;
 			
-			// aapt resource value: 0x7f0a0084
-			public const int refresh = 2131361924;
+			// aapt resource value: 0x7f0a0085
+			public const int refresh = 2131361925;
 			
-			// aapt resource value: 0x7f0a0082
-			public const int submenu = 2131361922;
+			// aapt resource value: 0x7f0a0083
+			public const int submenu = 2131361923;
 			
 			// aapt resource value: 0x7f0a000a
 			public const int tableLayout1 = 2131361802;

@@ -141,7 +141,6 @@
                         android:textColor="#ff140000"
                         android:paddingLeft="5dp"
                         android:background="@android:drawable/edit_text"
-                        android:editable="false"
                         android:enabled="true" />
                     <TextView
                         android:textAppearance="?android:attr/textAppearanceMedium"

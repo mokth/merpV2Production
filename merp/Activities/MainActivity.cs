@@ -137,6 +137,13 @@ namespace wincom.mobile.erp
 			case Resource.Id.mmenu_back:
 				BackupDatabase ();
 				return true;
+			case Resource.Id.mmenu_downdb:
+				var builderd = new AlertDialog.Builder(this);
+				builderd.SetMessage("Confirm to download database from server ? All local data will be overwritten by the downloaded data.");
+				builderd.SetPositiveButton("OK", (s, e) => { DownlooadDb ();;});
+				builderd.SetNegativeButton("Cancel", (s, e) => { /* do something on Cancel click */ });
+				builderd.Create().Show();
+				return true;
 //			case Resource.Id.mmenu_Reset:
 //				//do something
 //				return true;
@@ -174,6 +181,35 @@ namespace wincom.mobile.erp
 		{
 			base.OnResume();
 			GetDBPath ();
+		}
+
+		void DownlooadDb()
+		{
+			try {
+				//backup db first before upload
+				BackupDatabase();
+
+				WebClient myWebClient = new WebClient ();
+				var sdcard = Path.Combine (Android.OS.Environment.ExternalStorageDirectory.Path, "erpdata");
+				string filename = COMPCODE + "_" + BRANCODE + "_" + USERID + "_erplite.db";
+				string url = WCFHelper.GetDownloadDBUrl () + filename;
+				string localfilename = Path.Combine (sdcard, "erplite.db");
+				if (File.Exists(localfilename))
+					File.Delete(localfilename);
+
+				myWebClient.DownloadFile (url, localfilename);  
+				File.Copy (localfilename, pathToDatabase, true);
+
+				//delete the file after downloaded
+				string urldel = WCFHelper.GeUploadDBUrl()+"/afterdownload.aspx?ID="+filename;
+				WebRequest request = HttpWebRequest.Create(urldel);
+				request.GetResponse();
+
+				Toast.MakeText (this, "Successfully download db file from server!", ToastLength.Long).Show ();	
+			} catch (Exception ex)
+			{
+				Toast.MakeText (this, "Error downloading db file from server!", ToastLength.Long).Show ();	
+			}
 		}
 
 		void ClearPostedInv()

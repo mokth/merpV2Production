@@ -64,9 +64,13 @@ namespace wincom.mobile.erp
 			};
 			qty.EditorAction += HandleEditorAction;
 			qty.AfterTextChanged+= Qty_AfterTextChanged;
-			price.Enabled = false;
-			//price.EditorAction += HandleEditorAction; 
 			pathToDatabase = ((GlobalvarsApp)this.Application).DATABASE_PATH;
+
+			CompanyInfo compinfo=DataHelper.GetCompany (pathToDatabase);
+			if (compinfo != null) {
+			   price.Enabled = (compinfo.WCFUrl.ToLower () == "alloweditprice");
+			}
+			//price.EditorAction += HandleEditorAction; 
 
 			//SqliteConnection.CreateFile(pathToDatabase);
 			using (var db = new SQLite.SQLiteConnection(pathToDatabase))

@@ -14,7 +14,19 @@ namespace wincom.mobile.erp
 			//EndPoint = new EndpointAddress("http://www.wincomcloud.com/erpwfcdemo/Service1.svc");
 			EndPoint = new EndpointAddress("http://www.wincomcloud.com/WfcV2/Service1.svc");
 
+
 		}
+
+		public static string GetDownloadDBUrl()
+		{
+			return "http://www.wincomcloud.com/wfcv2/dbfiles/";
+		}
+
+		public static string GeUploadDBUrl()
+		{
+			return "http://www.wincomcloud.com/UploadDb/";
+		}
+
 
 		public  Service1Client GetServiceClient()
 		{
@@ -38,8 +50,8 @@ namespace wincom.mobile.erp
 				Name = "basicHttpBinding",
 				MaxBufferSize = 2147483647,
 				MaxReceivedMessageSize = 2147483647
-										
-			};
+				//MaxBufferPoolSize=2147483647
+        	};
 			TimeSpan timeout = new TimeSpan(0, 1, 0);
 			binding.SendTimeout = timeout;
 			binding.OpenTimeout = timeout;
