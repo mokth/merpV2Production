@@ -27,7 +27,7 @@ namespace wincom.mobile.erp
 			int runno = -1;
 			using (var db = new SQLite.SQLiteConnection (pathToDatabase)) {
 				var list2 = db.Table<Invoice> ().Where(x=>x.invdate>=Sdate && x.invdate<=Edate)
-						    .OrderByDescending(x=>x.invdate)
+						    .OrderByDescending<string>(x=>x.invno)
 					        .ToList<Invoice> ();
 				if (list2.Count > 0) {
 					string invno =list2[0].invno;
@@ -49,7 +49,7 @@ namespace wincom.mobile.erp
 			int runno = -1;
 			using (var db = new SQLite.SQLiteConnection (pathToDatabase)) {
 				var list2 = db.Table<CNNote> ().Where(x=>x.invdate>=Sdate && x.invdate<=Edate)
-					.OrderByDescending(x=>x.invdate)
+					.OrderByDescending(x=>x.cnno)
 					.ToList<CNNote> ();
 				if (list2.Count > 0) {
 					string invno =list2[0].cnno;
