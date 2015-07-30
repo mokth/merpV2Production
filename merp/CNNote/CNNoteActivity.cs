@@ -156,7 +156,10 @@ namespace wincom.mobile.erp
 		{
 			using (var db = new SQLite.SQLiteConnection(pathToDatabase))
 			{
-				var list2 = db.Table<CNNote>().ToList<CNNote>().Where(x=>x.isUploaded==false);
+				var list2 = db.Table<CNNote>()
+					.Where(x=>x.isUploaded==false)
+					.OrderByDescending (x => x.cnno)
+					.ToList<CNNote>();
 				foreach(var item in list2)
 				{
 					list.Add(item);
@@ -216,8 +219,11 @@ namespace wincom.mobile.erp
 			using (var db = new SQLite.SQLiteConnection (pathToDatabase)) {
 				var list = db.Table<CNNote> ().Where (x => x.cnno == inv.cnno).ToList<CNNote> ();
 				if (list.Count > 0) {
-					list [0].isPrinted = true;
-					db.Update (list [0]);
+					var list2 = db.Table<CNNoteDtls> ().Where (x => x.cnno == inv.cnno).ToList<CNNoteDtls> ();
+					if (list2.Count > 0) {
+						list [0].isPrinted = true;
+						db.Update (list [0]);
+					}
 				}
 			}
 		}

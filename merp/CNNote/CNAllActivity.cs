@@ -69,6 +69,9 @@ namespace wincom.mobile.erp
 			view.FindViewById<TextView> (Resource.Id.TaxAmount).Text = item.taxamt.ToString("n2");
 			double ttl = item.amount + item.taxamt;
 			view.FindViewById<TextView> (Resource.Id.TtlAmount).Text =ttl.ToString("n2");
+			ImageView img = view.FindViewById<ImageView> (Resource.Id.printed);
+			if (!item.isPrinted)
+				img.Visibility = ViewStates.Invisible;
 		}
 
 		protected override void OnResume()
@@ -111,7 +114,10 @@ namespace wincom.mobile.erp
 		{
 			using (var db = new SQLite.SQLiteConnection(pathToDatabase))
 			{
-				var list2 = db.Table<CNNote>().Where(x=>x.isUploaded==true).ToList<CNNote>();
+				var list2 = db.Table<CNNote>()
+					.Where(x=>x.isUploaded==true)
+					.OrderByDescending (x => x.cnno)
+					.ToList<CNNote>();
 				foreach(var item in list2)
 				{
 					list.Add(item);
@@ -135,8 +141,26 @@ namespace wincom.mobile.erp
 			findBTPrinter ();
 			if (mmDevice != null) {
 				StartPrint (inv, list,noofcopy);
+				if (!inv.isPrinted) {
+					updatePrintedStatus (inv);
+				}
 			}
 		}
+
+		void updatePrintedStatus(CNNote inv)
+		{
+			using (var db = new SQLite.SQLiteConnection (pathToDatabase)) {
+				var list = db.Table<CNNote> ().Where (x => x.cnno == inv.cnno).ToList<CNNote> ();
+				if (list.Count > 0) {
+					var list2 = db.Table<CNNoteDtls> ().Where (x => x.cnno == inv.cnno).ToList<CNNoteDtls> ();
+					if (list2.Count > 0) {
+						list [0].isPrinted = true;
+						db.Update (list [0]);
+					}
+				}
+			}
+		}
+
 
 		void StartPrint(CNNote inv,CNNoteDtls[] list,int noofcopy )
 		{

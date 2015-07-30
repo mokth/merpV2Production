@@ -69,6 +69,9 @@ namespace wincom.mobile.erp
 			view.FindViewById<TextView> (Resource.Id.TaxAmount).Text = item.taxamt.ToString("n2");
 			double ttl = item.amount + item.taxamt;
 			view.FindViewById<TextView> (Resource.Id.TtlAmount).Text =ttl.ToString("n2");
+			ImageView img = view.FindViewById<ImageView> (Resource.Id.printed);
+			if (!item.isPrinted)
+				img.Visibility = ViewStates.Invisible;
 		}
 
 		protected override void OnResume()
@@ -111,7 +114,10 @@ namespace wincom.mobile.erp
 		{
 			using (var db = new SQLite.SQLiteConnection(pathToDatabase))
 			{
-				var list2 = db.Table<Invoice>().Where(x=>x.isUploaded==true).ToList<Invoice>();
+				var list2 = db.Table<Invoice>()
+					.Where(x=>x.isUploaded==true)
+					.OrderByDescending (x => x.invno)
+					.ToList<Invoice>();
 				foreach(var item in list2)
 				{
 					list.Add(item);
@@ -135,6 +141,25 @@ namespace wincom.mobile.erp
 			findBTPrinter ();
 			if (mmDevice != null) {
 				StartPrint (inv, list,noofcopy);
+				if (!inv.isPrinted) {
+					updatePrintedStatus (inv);
+				}
+			}
+		}
+
+		void updatePrintedStatus(Invoice inv)
+		{
+			using (var db = new SQLite.SQLiteConnection (pathToDatabase)) {
+				var list = db.Table<Invoice> ().Where (x => x.invno == inv.invno).ToList<Invoice> ();
+				if (list.Count > 0) {
+					//if only contains items then allow to update the printed status.
+					//this to allow the invoice;s item can be added. if not can not be posted(upload)
+					var list2 = db.Table<InvoiceDtls> ().Where (x => x.invno == inv.invno).ToList<InvoiceDtls> ();
+					if (list2.Count > 0) {
+						list [0].isPrinted = true;
+						db.Update (list [0]);
+					}
+				}
 			}
 		}
 

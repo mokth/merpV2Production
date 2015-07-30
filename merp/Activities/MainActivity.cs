@@ -15,6 +15,7 @@ using Android.Telephony;
 using Android.Accounts;
 using Android.Text;
 using System.Net;
+using Android.Content.PM;
 
 namespace wincom.mobile.erp
 {
@@ -88,14 +89,15 @@ namespace wincom.mobile.erp
 		{
 			CompanyInfo comp= DataHelper.GetCompany (pathToDatabase);
 			View messageView = LayoutInflater.Inflate(Resource.Layout.About, null, false);
-
+			PackageInfo pInfo = PackageManager.GetPackageInfo (PackageName, 0);
 			// When linking text, force to always use default color. This works
 			// around a pressed color state bug.
 			TextView textView = (TextView) messageView.FindViewById(Resource.Id.about_credits);
 			TextView textDesc = (TextView) messageView.FindViewById(Resource.Id.about_descrip);
+			TextView textVer = (TextView) messageView.FindViewById(Resource.Id.about_ver);
 			//textDesc.Text = Html.FromHtml (Resources.GetString(Resource.String.app_descrip))..ToString();
 			textView.Text = "For inquiry, please contact " + comp.SupportContat;
-
+			textVer .Text = "Build Version : "+pInfo.VersionName;
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.SetIcon(Resource.Drawable.Icon);
 			builder.SetTitle(Resource.String.app_name);

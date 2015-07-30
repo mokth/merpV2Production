@@ -53,6 +53,7 @@ namespace wincom.mobile.erp
 		{
 			Button butupload =  FindViewById<Button> (Resource.Id.butupload);
 			butupload.Enabled = false;
+			butupload.Text = "Uploading, please wait...";
 			//UploadBillsToServer();
 			UploadHelper upload= new UploadHelper();
 			upload.Uploadhandle = OnUploadDoneDlg; 
@@ -95,6 +96,7 @@ namespace wincom.mobile.erp
 		private void OnUploadDoneDlg(Activity callingAct,int count,string msg)
 		{
 			Button butupload = callingAct.FindViewById<Button> (Resource.Id.butupload);
+			butupload.Text = "UPLOAD INVOICE";
 			butupload.Enabled = true;
 			if (count > 0) {
 				string dispmsg = "Total " + count.ToString () + " invoices uploaded.";

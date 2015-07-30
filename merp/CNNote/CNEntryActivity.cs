@@ -76,7 +76,10 @@ namespace wincom.mobile.erp
 
 			List<string> icodes = new List<string> ();
 			foreach (Item item in items) {
-				icodes.Add (item.ICode+" | "+item.IDesc);
+				//icodes.Add (item.ICode+" | "+item.IDesc);
+				if (item.IDesc.Length > 40) {
+					icodes.Add (item.ICode + " | " + item.IDesc.Substring(0,40)+"...");
+				}else icodes.Add (item.ICode + " | " + item.IDesc);
 			}
 
 			dataAdapter = new ArrayAdapter<String>(this,Resource.Layout.spinner_item, icodes);
@@ -159,7 +162,13 @@ namespace wincom.mobile.erp
 				var invlist =db.Table<CNNoteDtls> ().Where (x => x.cnno == invno&& x.ID==id).ToList<CNNoteDtls> ();
 				if (invlist.Count > 0) {
 					CNNoteDtls invItem = invlist [0];
-					int index = dataAdapter.GetPosition (invItem.icode + " | " + invItem.description);
+					//int index = dataAdapter.GetPosition (invItem.icode + " | " + invItem.description);
+					int index = -1;
+					if (invItem.description.Length > 40)
+						index = dataAdapter.GetPosition (invItem.icode + " | " + invItem.description.Substring (0, 40) + "...");
+					else
+						index = dataAdapter.GetPosition (invItem.icode + " | " + invItem.description);
+					
 					Item item =items.Where (x => x.ICode == invItem.icode).FirstOrDefault ();
 					spinner.SetSelection (index);
 					qty.Text = invItem.qty.ToString ();
@@ -227,7 +236,7 @@ namespace wincom.mobile.erp
 			string[] codedesc = spinner.SelectedItem.ToString ().Split (new char[]{ '|' });
 			inv.cnno = txtInvNo.Text;
 			inv.amount = amount;
-			inv.description = codedesc [1].Trim();
+			//inv.description = codedesc [1].Trim();
 			inv.icode = codedesc [0].Trim();// spinner.SelectedItem.ToString ();
 			inv.price = uprice;
 			inv.qty = stqQty;
@@ -240,7 +249,8 @@ namespace wincom.mobile.erp
 				Toast.MakeText (this, "Invlaid Item Code...", ToastLength.Long).Show ();
 				return;
 			}
-
+			Item ItemCode = itemlist [0];
+			inv.description = ItemCode.IDesc;
 			int id = Convert.ToInt32 (ITEMUID);				
 			//inv..title = spinner.SelectedItem.ToString ();
 			using (var db = new SQLite.SQLiteConnection (pathToDatabase)) {
@@ -251,7 +261,8 @@ namespace wincom.mobile.erp
 					invItem.netamount = netamount;
 					invItem.tax = taxamt;
 					invItem.taxgrp = txttax.Text;
-					invItem.description =  codedesc [1].Trim();
+					//invItem.description =  codedesc [1].Trim();
+					invItem.description = ItemCode.IDesc;
 					invItem.icode =  codedesc [0].Trim(); //spinner.SelectedItem.ToString ();
 					invItem.price = uprice;
 					invItem.qty = stqQty;

@@ -708,6 +708,19 @@ namespace wincom.mobile.erp
 			return invs;
 		}
 
+		CNNote[] GetCNNote (DateTime printdate1, DateTime printdate2)
+		{
+			CNNote[] invs =  {
+
+			};
+			using (var db = new SQLite.SQLiteConnection (pathToDatabase)) {
+				var list = db.Table<CNNote> ().Where (x => x.invdate >= printdate1 && x.invdate <= printdate2).OrderBy (x => x.invdate).ToList<CNNote> ();
+				invs = new CNNote[list.Count];
+				list.CopyTo (invs);
+			}
+			return invs;
+		}
+
 		private string GetInvoiceSumm(DateTime printdate1,DateTime printdate2 )
 		{
 			string text = "";
@@ -767,6 +780,15 @@ namespace wincom.mobile.erp
 				}
 			}
 
+			double ttlCNTax = 0;
+			double ttlCNAmt = 0;
+			double ttlCN = 0;
+			var cns = GetCNNote(printdate1, printdate2);
+			foreach (CNNote cn in cns) {
+				ttlCNTax = ttlCNTax + cn.taxamt;
+				ttlCNAmt = ttlCNAmt + cn.amount;
+			}
+			ttlCN = ttlCNTax + ttlCNAmt;
 			double ttl = ttlamt + ttltax;
 			text += "------------------------------------------\n";
 			text += "TOTAL TAX     :" + ttltax.ToString ("n2").PadLeft (13, ' ')+"\n";
@@ -775,7 +797,17 @@ namespace wincom.mobile.erp
 			text += "------------------------------------------\n";
 			text += "SUMMARY\n";
 			text += "TOTAL CASH    :" + ttlcash.ToString ("n2").PadLeft (13, ' ')+"\n";
-			text += "TOTAL INVOICE :" + ttlInv.ToString ("n2").PadLeft (13, ' ')+"\n";
+			text += "TOTAL INVOICE :" + ttlInv.ToString ("n2").PadLeft (13, ' ')+"\n\n";
+			text += "TOTAL C/NOTE  :" + ttlCN.ToString ("n2").PadLeft (13, ' ')+"\n";
+			text += "------------------------------------------\n";
+			text += "CASH COLLECTION   :\n\n\n"; 
+			text += "(-)DIESEL EXP     :\n\n\n"; 
+			text += "(-)OTHER EXP      :\n\n\n"; 
+			text += "(=)NET COLLECTION :\n\n\n"; 
+			text += "(-)PAYMENT        :\n\n\n"; 
+			text += "(=)SHORT          :\n\n\n"; 
+			text += "PREPARED BY:\n\n\n\n\n"; 
+			text += "VERIFY BY  :\n\n\n\n\n"; 
 			text += "------------------------------------------\n\n\n\n";
 
 			return text;
