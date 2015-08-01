@@ -25,8 +25,10 @@ namespace wincom.mobile.erp
 			invcount =0;
 			_errmsg = "";
 			_client = _wfc.GetServiceClient ();	
-			_client.UploadOutletBillsCompleted+= ClientOnUploadOutletBillsCompleted;
-			UploadBillsToServer ();
+			if (_client != null) {
+				_client.UploadOutletBillsCompleted += ClientOnUploadOutletBillsCompleted;
+				UploadBillsToServer ();
+			}
 		}
 
 		private void UploadBillsToServer()

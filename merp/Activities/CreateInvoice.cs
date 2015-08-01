@@ -18,6 +18,7 @@ namespace wincom.mobile.erp
 	public class CreateInvoice : Activity,IEventListener
 	{
 		string pathToDatabase;
+		string compcode;
 		List<Trader> items = null;
 		ArrayAdapter<String> dataAdapter;
 		ArrayAdapter dataAdapter2;
@@ -56,6 +57,7 @@ namespace wincom.mobile.erp
 			};
 
 			pathToDatabase = ((GlobalvarsApp)this.Application).DATABASE_PATH;
+			compcode = ((GlobalvarsApp)this.Application).COMPANY_CODE;
 			apara =  DataHelper.GetAdPara (pathToDatabase);
 			//SqliteConnection.CreateFile(pathToDatabase);
 			using (var db = new SQLite.SQLiteConnection(pathToDatabase))
@@ -130,7 +132,9 @@ namespace wincom.mobile.erp
 				}else pos = dataAdapter2.GetPosition ("CASH");
 			if (pos > -1) {
 					spinnerType.SetSelection (pos);
-					//spinnerType.Enabled = false;
+					if (compcode.ToUpper()=="HB"){
+					   spinnerType.Enabled = false;
+					}
 				}//else spinnerType.Enabled = true;
 		}
 

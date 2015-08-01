@@ -30,8 +30,11 @@ namespace wincom.mobile.erp
 
 		public  Service1Client GetServiceClient()
 		{
-			InitializeServiceClient ();
-
+			try {
+				InitializeServiceClient ();
+			} catch {
+				_client = null;
+			}
 			return _client;
 		}
 

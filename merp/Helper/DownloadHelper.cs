@@ -39,17 +39,23 @@ namespace wincom.mobile.erp
 			string brn =((GlobalvarsApp)CallingActivity.Application).BRANCH_CODE;
 
 			_client = _wfc.GetServiceClient ();	
-			_client.GetItemCodesCompleted+= ClientOnGetItemCompleted;
-			_client.GetItemCodesAsync (comp, brn);
+			if (_client != null) {
+				_client.GetItemCodesCompleted += ClientOnGetItemCompleted;
+				_client.GetItemCodesAsync (comp, brn);
+			}
 		}
 
 		public void startDownloadCustomer()
 		{
 			string comp =((GlobalvarsApp)CallingActivity.Application).COMPANY_CODE;
 			string brn =((GlobalvarsApp)CallingActivity.Application).BRANCH_CODE;
+			string userid = ((GlobalvarsApp)CallingActivity.Application).USERID_CODE;
+		
 			_client = _wfc.GetServiceClient ();	
-			_client.GetCustomersCompleted+= ClientOnGetCustomerCompleted;
-			_client.GetCustomersAsync (comp, brn);
+			if (_client != null) {
+				_client.GetCustomersExCompleted += ClientOnGetCustomerCompleted;
+				_client.GetCustomersExAsync (comp, brn, userid);
+			}
 		}
 
 		public  void startDownloadCompInfoex()
@@ -58,8 +64,11 @@ namespace wincom.mobile.erp
 			string brn =((GlobalvarsApp)CallingActivity.Application).BRANCH_CODE;
 			string userid = ((GlobalvarsApp)CallingActivity.Application).USERID_CODE;
 			_client = _wfc.GetServiceClient ();	
+		
+			if (_client != null) {
 			_client.GetCompProfileCompleted += ClientOnCompProfCompleted;
 			_client.GetCompProfileAsync (comp,brn,userid);
+			}
 		}
 
 		public  void startDownloadCompInfo()
@@ -68,9 +77,12 @@ namespace wincom.mobile.erp
 			string comp =((GlobalvarsApp)CallingActivity.Application).COMPANY_CODE;
 			string brn =((GlobalvarsApp)CallingActivity.Application).BRANCH_CODE;
 			string userid = ((GlobalvarsApp)CallingActivity.Application).USERID_CODE;
+		
 			_client = _wfc.GetServiceClient ();	
-			_client.GetCompProfileCompleted += ClientOnCompProfCompleted;
-			_client.GetCompProfileAsync (comp,brn,userid);
+			if (_client != null) {
+				_client.GetCompProfileCompleted += ClientOnCompProfCompleted;
+				_client.GetCompProfileAsync (comp, brn, userid);
+			}
 		}
 
 		//		public  void startDownloadCompInfoEx()
@@ -89,18 +101,23 @@ namespace wincom.mobile.erp
 			string brn =((GlobalvarsApp)CallingActivity.Application).BRANCH_CODE;
 			string userid = ((GlobalvarsApp)CallingActivity.Application).USERID_CODE;
 			_client = _wfc.GetServiceClient ();	
-			_client.GetRunnoCompleted+= _client_GetRunnoCompleted;
-			_client.GetRunnoAsync(comp,brn,userid);
+
+			if (_client != null) {
+				_client.GetRunnoCompleted += _client_GetRunnoCompleted;
+				_client.GetRunnoAsync (comp, brn, userid);
+			}
 		}
 
 
 		public void startLogin(string userid, string passw, string code)
 		{
 			_client = _wfc.GetServiceClient ();	
-			PhoneTool ptool = new PhoneTool ();
-			string serial =ptool.DeviceIdIMEI();
-			_client.LoginExCompleted += ClientOnLoginCompleted;
-			_client.LoginExAsync(userid, passw, code,serial);
+			if (_client != null) {
+				PhoneTool ptool = new PhoneTool ();
+				string serial = ptool.DeviceIdIMEI ();
+				_client.LoginExCompleted += ClientOnLoginCompleted;
+				_client.LoginExAsync (userid, passw, code, serial);
+			}
 		}
 
 		private void ClientOnGetItemCompleted(object sender, GetItemCodesCompletedEventArgs e)
@@ -132,7 +149,7 @@ namespace wincom.mobile.erp
 
 		}
 
-		private void ClientOnGetCustomerCompleted(object sender, GetCustomersCompletedEventArgs e)
+		private void ClientOnGetCustomerCompleted(object sender, GetCustomersExCompletedEventArgs e)
 		{
 			List<Customer> list = new List<Customer> ();
 			string msg = null;

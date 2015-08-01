@@ -406,11 +406,24 @@ namespace wincom.mobile.erp
 			string addr3 =string.IsNullOrEmpty (comp.Addr3) ? "" : comp.Addr3.Trim ();
 			string addr4 =string.IsNullOrEmpty (comp.Addr4) ? "" : comp.Addr4.Trim ();
 			string gst =string.IsNullOrEmpty (comp.GSTNo) ? "" : comp.GSTNo.Trim ();
-			if ((comp.CompanyName.Trim ().Length + comp.RegNo.Trim ().Length + 2) > 42) {
-				test += comp.CompanyName.Trim () + "\n";
-				test += "(" + comp.RegNo.Trim () + ")\n";
+			string compname = comp.CompanyName.Trim ();
+			string[] names =compname.Split (new char[]{ '|' });
+			if (names.Length > 1) {
+				test += names [0] + "\n";
+
+				if ((names [1].Trim ().Length + comp.RegNo.Trim ().Length + 2) > 42) {
+					test += names [1].Trim () + "\n";
+					test += "(" + comp.RegNo.Trim () + ")\n";
+				} else {
+					test += names [1].Trim () + "(" + comp.RegNo.Trim () + ")\n";
+				}
 			} else {
-				test += comp.CompanyName.Trim ()+"(" + comp.RegNo.Trim () + ")\n";
+				if ((comp.CompanyName.Trim ().Length + comp.RegNo.Trim ().Length + 2) > 42) {
+					test += comp.CompanyName.Trim () + "\n";
+					test += "(" + comp.RegNo.Trim () + ")\n";
+				} else {
+					test += comp.CompanyName.Trim () + "(" + comp.RegNo.Trim () + ")\n";
+				}
 			}
 			if (addr1!="")
 				test += comp.Addr1.Trim () + "\n";	
