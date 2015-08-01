@@ -121,6 +121,11 @@
     <Compile Include="Activities\DownloadActivity.cs" />
     <Compile Include="Activities\TransListActivity.cs" />
     <Compile Include="Activities\MasterRefActivity.cs" />
+    <Compile Include="Activities\EditInvoice.cs" />
+    <Compile Include="CNNote\EditCNNote.cs" />
+    <Compile Include="DateRangeDialog.cs" />
+    <Compile Include="Helper\DatePicker.cs" />
+    <Compile Include="Activities\DateRange.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -271,6 +276,8 @@
     <AndroidResource Include="Resources\drawable-xxhdpi\printer_blue.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\printer_blue.png" />
     <AndroidResource Include="Resources\layout\Main.axml" />
+    <AndroidResource Include="Resources\menu\popupHis.xml" />
+    <AndroidResource Include="Resources\layout\DateRange.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup />

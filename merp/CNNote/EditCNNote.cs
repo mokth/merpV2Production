@@ -13,8 +13,8 @@ using System.IO;
 
 namespace wincom.mobile.erp
 {
-	[Activity (Label = "NEW CREDIT NOTE")]			
-	public class CreateCNNote : Activity,IEventListener
+	[Activity (Label = "EDIT CREDIT NOTE")]			
+	public class EditCNNote : Activity,IEventListener
 	{
 		string pathToDatabase;
 		List<Trader> items = null;
@@ -22,6 +22,8 @@ namespace wincom.mobile.erp
 		DateTime _date ;
 		AdPara apara = null;
 		Spinner spinner;
+		string CNNO;
+		CNNote cnInfo;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -31,22 +33,26 @@ namespace wincom.mobile.erp
 			}
 			SetContentView (Resource.Layout.CreateCNote);
 			EventManagerFacade.Instance.GetEventManager().AddListener(this);
+			pathToDatabase = ((GlobalvarsApp)this.Application).DATABASE_PATH;
+
+			CNNO = Intent.GetStringExtra ("cnno") ?? "AUTO";
+			cnInfo =DataHelper.GetCNNote (pathToDatabase, CNNO);
 
 			// Create your application here
 			_date = DateTime.Today;
 			spinner = FindViewById<Spinner> (Resource.Id.newinv_custcode);
 
 			Button butSave = FindViewById<Button> (Resource.Id.newinv_bsave);
-			Button butNew = FindViewById<Button> (Resource.Id.newinv_cancel);
+			butSave.Text = "SAVE";
+			Button butCancel = FindViewById<Button> (Resource.Id.newinv_cancel);
 			Button butFind = FindViewById<Button> (Resource.Id.newinv_bfind);
 			Button butFindInv = FindViewById<Button> (Resource.Id.newinv_bfindinv);
 			spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (spinner_ItemSelected);
 			butSave.Click += butSaveClick;
-			butNew.Click += butCancelClick;
+			butCancel.Click += butCancelClick;
 			TextView cnno =  FindViewById<TextView> (Resource.Id.newinv_no);
-			cnno.Text = "AUTO";
+			cnno.Enabled = false;
 			EditText trxdate =  FindViewById<EditText> (Resource.Id.newinv_date);
- 			trxdate.Text = _date.ToString ("dd-MM-yyyy");
 			trxdate.Click += delegate(object sender, EventArgs e) {
 				ShowDialog (0);
 			};
@@ -58,7 +64,7 @@ namespace wincom.mobile.erp
 				ShowInvLookUp();
 			};
 
-			pathToDatabase = ((GlobalvarsApp)this.Application).DATABASE_PATH;
+
 			apara =  DataHelper.GetAdPara (pathToDatabase);
 			//SqliteConnection.CreateFile(pathToDatabase);
 			using (var db = new SQLite.SQLiteConnection(pathToDatabase))
@@ -75,8 +81,27 @@ namespace wincom.mobile.erp
 			dataAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
 			// attaching data adapter to spinner
 			spinner.Adapter =dataAdapter;
-
+			LoadData ();
 		}
+
+		private void LoadData()
+		{
+			
+			EditText trxdate =  FindViewById<EditText> (Resource.Id.newinv_date);
+			DateTime invdate = Utility.ConvertToDate (trxdate.Text);
+			Spinner spinner = FindViewById<Spinner> (Resource.Id.newinv_custcode);
+			TextView custname = FindViewById<TextView> (Resource.Id.newinv_custname);
+			TextView cninvno =  FindViewById<TextView> (Resource.Id.newcninv_no);
+			TextView cnno =  FindViewById<TextView> (Resource.Id.newinv_no);
+
+			trxdate.Text = cnInfo.invdate.ToString ("dd-MM-yyyy");
+			int pos1= dataAdapter.GetPosition (cnInfo.custcode+" | "+cnInfo.description);
+			spinner.SetSelection (pos1);
+			custname.Text = cnInfo.description;
+			cninvno.Text = cnInfo.invno;
+			cnno.Text = cnInfo.cnno;
+		}
+
 
 		public override void OnBackPressed() {
 			// do nothing.
@@ -84,15 +109,11 @@ namespace wincom.mobile.erp
 
 		private void butSaveClick(object sender,EventArgs e)
 		{
-			int count1 = 0;
-			using (var db = new SQLite.SQLiteConnection (pathToDatabase)) {
-				count1 = db.Table<Item>().Count ();
+			
+			if (SaveCN ()) {
+				base.OnBackPressed();
 			}
-			if (count1 > 0)
-				CreateNewCN ();
-			else {
-				Toast.MakeText (this,"Please download Master Item before proceed... ", ToastLength.Long).Show ();	
-			}
+
 		}
 
 		private void butCancelClick(object sender,EventArgs e)
@@ -108,7 +129,7 @@ namespace wincom.mobile.erp
 			string[] codes = txt.Split (new char[]{ '|' });
 			if (codes.Length == 0)
 				return;
-			
+
 			Trader item =items.Where (x => x.CustCode ==codes[0].Trim()).FirstOrDefault ();
 			if (item != null) {
 				TextView name = FindViewById<TextView> (Resource.Id.newinv_custname);
@@ -131,71 +152,43 @@ namespace wincom.mobile.erp
 		}
 
 
-		void ShowItemEntry (CNNote inv, string[] codes)
+		private bool SaveCN()
 		{
-			var intent = new Intent (this, typeof(CNEntryActivity)); //need to change
-			intent.PutExtra ("invoiceno", inv.cnno);
-			intent.PutExtra ("customer", codes [1].Trim ());
-			intent.PutExtra ("itemuid", "-1");
-			intent.PutExtra ("editmode", "NEW");
-			StartActivity (intent);
-		}
-
-		private void CreateNewCN()
-		{
+			bool IsSave = false;
 			CNNote inv = new CNNote ();
 			EditText trxdate =  FindViewById<EditText> (Resource.Id.newinv_date);
 			DateTime invdate = Utility.ConvertToDate (trxdate.Text);
-			DateTime tmr = invdate.AddDays (1);
-			AdNumDate adNum= DataHelper.GetNumDate (pathToDatabase, invdate,"CN");
 			Spinner spinner = FindViewById<Spinner> (Resource.Id.newinv_custcode);
-			TextView txtinvno =FindViewById<TextView> (Resource.Id.newinv_no);
 			TextView custname = FindViewById<TextView> (Resource.Id.newinv_custname);
 			TextView cninvno =  FindViewById<TextView> (Resource.Id.newcninv_no);
-			string prefix = apara.CNPrefix.Trim ().ToUpper ();
 			if (spinner.SelectedItem == null) {
 				Toast.MakeText (this, "No Customer code selected...", ToastLength.Long).Show ();			
 				spinner.RequestFocus ();
-				return;			
+				return IsSave;			
 			}
-
 			string[] codes = spinner.SelectedItem.ToString().Split (new char[]{ '|' });
 			if (codes.Length == 0)
-				return;
-			
+				return IsSave;
+
 			using (var db = new SQLite.SQLiteConnection (pathToDatabase)) {
-				string invno = "";
-				int runno = adNum.RunNo + 1;
-				int currentRunNo =DataHelper.GetLastCNRunNo (pathToDatabase, invdate);
-				if (currentRunNo >= runno)
-					runno = currentRunNo + 1;
-				
-				invno =prefix + invdate.ToString("yyMM") + runno.ToString().PadLeft (4, '0');
-				txtinvno.Text= invno;
-				inv.invdate = invdate;
-				inv.trxtype = "";
-				inv.created = DateTime.Now;
-				inv.cnno = invno;
-				inv.description = custname.Text;
-				inv.amount = 0;
-				inv.custcode = codes [0].Trim ();
-				inv.isUploaded = false;
-				inv.invno = cninvno.Text;
-				if (!string.IsNullOrEmpty (inv.invno)) {
-					Invoice invInfo = DataHelper.GetInvoice (pathToDatabase,inv.invno);
+
+				cnInfo.invdate = invdate;
+				cnInfo.created = DateTime.Now;
+				cnInfo.description = custname.Text;
+				cnInfo.custcode = codes [0].Trim ();
+				cnInfo.invno = cninvno.Text;
+				cnInfo.trxtype = "";
+				if (!string.IsNullOrEmpty (cnInfo.invno)) {
+					Invoice invInfo = DataHelper.GetInvoice (pathToDatabase,cnInfo.invno);
 					if (invInfo != null) {
-						inv.trxtype = invInfo.trxtype;	   		
+						cnInfo.trxtype = invInfo.trxtype;	   		
 					}
 				}
-				db.Insert (inv);
-				adNum.RunNo = runno;
-				if (adNum.ID >= 0)
-					db.Update (adNum);
-				else
-					db.Insert (adNum);
+				db.Update (cnInfo);
+				IsSave = true;
 			}
 
-			ShowItemEntry (inv, codes);
+			return IsSave;
 		}
 
 		void ShowCustLookUp()

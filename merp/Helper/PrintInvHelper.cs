@@ -57,7 +57,7 @@ namespace wincom.mobile.erp
 		}
 
 
-		void PrintInvoice (Invoice inv, InvoiceDtls[] list, ref string test)
+		void PrintInvoice (Invoice inv, InvoiceDtls[] list, ref string test,bool needFooter=true)
 		{
 			PrintCompHeader (ref test);
 			PrintCustomer (ref test, inv.custcode);
@@ -75,8 +75,10 @@ namespace wincom.mobile.erp
 			test += dline;
 			PrintTotal (ref test, ttlAmt, ttltax);
 			PrintTaxSumm (ref test, list);
-			PrintFooter (ref test);
-			test += "\nTHANK YOU\n\n\n\n";
+			if (needFooter) {
+				PrintFooter (ref test);
+				test += "\nTHANK YOU\n\n\n\n";
+			}else test += "\n\n";
 		}
 
 		private bool TrytoConnect(BluetoothSocket mmSocket)
@@ -215,7 +217,7 @@ namespace wincom.mobile.erp
 
 
 			if (inv != null) {
-				PrintInvoice (inv, list, ref test);
+				PrintInvoice (inv, list, ref test,needFooter:false);
 				foreach(InvoiceDtls itm in list)
 				{
 					ttlAmt = ttlAmt+ itm.netamount;
@@ -284,9 +286,11 @@ namespace wincom.mobile.erp
 					string test = "";
 					double invTtlAmt =0;
 					double invTtlTax =0;
-					bool IsfoundInvoice =PrintCNInvoice(inv,ref test,ref invTtlAmt,ref invTtlTax);
-					PrintCompHeader (ref test);
-					PrintCustomer (ref test,inv.custcode);
+					bool IsfoundInvoice =PrintCNInvoice(inv,ref test,ref invTtlAmt,ref invTtlTax );
+					if (!IsfoundInvoice){
+						PrintCompHeader (ref test);
+						PrintCustomer (ref test,inv.custcode);
+					}
 					PrintCNHeader (ref test,inv);
 					string dline="";
 					double ttlAmt =0;
@@ -775,6 +779,7 @@ namespace wincom.mobile.erp
 						text = text + line;
 					}
 					//if (multiType) {
+					if (typgrp.Count()>1)
 						text = text + PrintSubTotal (subttltax, subttlamt);
 				//	}
 				}
@@ -782,14 +787,25 @@ namespace wincom.mobile.erp
 
 			double ttlCNTax = 0;
 			double ttlCNAmt = 0;
+			double ttlCNCODTax = 0;
+			double ttlCNCODAmt = 0;
 			double ttlCN = 0;
+			double ttlCNCOD = 0;
 			var cns = GetCNNote(printdate1, printdate2);
 			foreach (CNNote cn in cns) {
-				ttlCNTax = ttlCNTax + cn.taxamt;
-				ttlCNAmt = ttlCNAmt + cn.amount;
+				if (cn.trxtype == "CASH") {
+					ttlCNCODTax = ttlCNCODTax + cn.taxamt;
+					ttlCNCODAmt = ttlCNCODAmt + cn.amount;
+				} else {
+					ttlCNTax = ttlCNTax + cn.taxamt;
+					ttlCNAmt = ttlCNAmt + cn.amount;
+				}
 			}
 			ttlCN = ttlCNTax + ttlCNAmt;
+			ttlCNCOD = ttlCNCODTax + ttlCNCODAmt;
+
 			double ttl = ttlamt + ttltax;
+			double cashCollect = ttlcash - ttlCNCOD;
 			text += "------------------------------------------\n";
 			text += "TOTAL TAX     :" + ttltax.ToString ("n2").PadLeft (13, ' ')+"\n";
 			text += "TOTAL AMOUNT  :" + ttlamt.ToString ("n2").PadLeft (13, ' ')+"\n";
@@ -798,7 +814,9 @@ namespace wincom.mobile.erp
 			text += "SUMMARY\n";
 			text += "TOTAL CASH    :" + ttlcash.ToString ("n2").PadLeft (13, ' ')+"\n";
 			text += "TOTAL INVOICE :" + ttlInv.ToString ("n2").PadLeft (13, ' ')+"\n\n";
-			text += "TOTAL C/NOTE  :" + ttlCN.ToString ("n2").PadLeft (13, ' ')+"\n";
+			text += "TOTAL CN CASH :" + ttlCNCOD.ToString ("n2").PadLeft (13, ' ')+"\n";
+			text += "TOTAL CN INV  :" + ttlCN.ToString ("n2").PadLeft (13, ' ')+"\n";
+			text += "TOTAL CASH COLLECT :" + cashCollect.ToString ("n2").PadLeft (13, ' ')+"\n";
 			text += "------------------------------------------\n";
 			text += "CASH COLLECTION   :\n\n\n"; 
 			text += "(-)DIESEL EXP     :\n\n\n"; 

@@ -86,6 +86,7 @@ namespace wincom.mobile.erp
 			listView = FindViewById<ListView> (Resource.Id.feedList);
 			SetViewDlg viewdlg = SetViewDelegate;
 			listView.Adapter = new GenericListAdapter<Invoice> (this, listData, Resource.Layout.ListItemRow, viewdlg);
+		
 		}
 
 		void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e) {
@@ -101,11 +102,17 @@ namespace wincom.mobile.erp
 			PopupMenu menu = new PopupMenu (e.Parent.Context, e.View);
 			menu.Inflate (Resource.Menu.popupInv);
 
-			if (!compinfo.AllowDelete) {
+			//if (!compinfo.AllowDelete) {
 				menu.Menu.RemoveItem (Resource.Id.popInvdelete);
+			//}
+
+			if (!compinfo.AllowEdit) {
+				menu.Menu.RemoveItem (Resource.Id.popInvedit);
 			}
+
 			if (DataHelper.GetInvoicePrintStatus (pathToDatabase, item.invno)) {
 				menu.Menu.RemoveItem (Resource.Id.popInvdelete);
+				menu.Menu.RemoveItem (Resource.Id.popInvedit);
 			}
 			menu.MenuItemClick += (s1, arg1) => {
 				if (arg1.Item.TitleFormatted.ToString().ToLower()=="add")
@@ -121,12 +128,21 @@ namespace wincom.mobile.erp
 				} else if (arg1.Item.TitleFormatted.ToString().ToLower()=="delete")
 				{
 					Delete(item);
+				}else if (arg1.Item.TitleFormatted.ToString().ToLower()=="edit")
+				{
+					Edit(item);
 				}
 
 			};
 			menu.Show ();
 		}
 
+		void Edit(Invoice inv)
+		{
+			var intent = new Intent (this, typeof(EditInvoice));
+			intent.PutExtra ("invoiceno", inv.invno);
+			StartActivity (intent);
+		}
 		void Delete(Invoice inv)
 		{
 			var builder = new AlertDialog.Builder(this);
@@ -210,6 +226,12 @@ namespace wincom.mobile.erp
 			if (mmDevice != null) {
 				StartPrint (inv, list,noofcopy);
 				updatePrintedStatus (inv);
+				var found =listData.Where (x => x.invno == inv.invno).ToList ();
+				if (found.Count > 0) {
+					found [0].isPrinted = true;
+					SetViewDlg viewdlg = SetViewDelegate;
+					listView.Adapter = new GenericListAdapter<Invoice> (this, listData, Resource.Layout.ListItemRow, viewdlg);
+				}
 			}
 		
 		}

@@ -17,7 +17,7 @@ using Java.Util;
 namespace wincom.mobile.erp
 {
 	[Activity (Label = "INVOICE LIST")]			
-	public class InvoiceAllActivity : Activity
+	public class InvoiceAllActivity : Activity,IEventListener
 	{
 		ListView listView ;
 		List<Invoice> listData = new List<Invoice> ();
@@ -29,15 +29,21 @@ namespace wincom.mobile.erp
 		Stream mmOutputStream;
 		AdPara apara=null;
 		CompanyInfo compinfo;
+		DateTime sdate;
+		DateTime edate;
+
+
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 			if (!((GlobalvarsApp)this.Application).ISLOGON) {
 				Finish ();
 			}
+			EventManagerFacade.Instance.GetEventManager().AddListener(this);
 			// Create your application here
 			SetContentView (Resource.Layout.ListView);
 			pathToDatabase = ((GlobalvarsApp)this.Application).DATABASE_PATH;
+			Utility.GetDateRange (ref sdate,ref edate);
 			populate (listData);
 			apara =  DataHelper.GetAdPara (pathToDatabase);
 			listView = FindViewById<ListView> (Resource.Id.feedList);
@@ -57,6 +63,14 @@ namespace wincom.mobile.erp
 			listView.Adapter = new GenericListAdapter<Invoice> (this, listData, Resource.Layout.ListItemRow, viewdlg);
 
 		}
+
+//		void GetDateRange ()
+//		{
+//			DateTime today = DateTime.Today;
+//			sdate = new DateTime (today.Year, today.Month , 1);
+//			sdate = sdate.AddMonths (-3);
+//			edate = today.AddMonths (1).AddDays (-1);
+//		}
 
 		private void SetViewDelegate(View view,object clsobj)
 		{
@@ -96,18 +110,27 @@ namespace wincom.mobile.erp
 		void OnListItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e) {
 			Invoice item = listData.ElementAt (e.Position);
 			PopupMenu menu = new PopupMenu (e.Parent.Context, e.View);
-			menu.Inflate (Resource.Menu.popupInv);
-			menu.Menu.RemoveItem (Resource.Id.popInvdelete);
-			menu.Menu.RemoveItem (Resource.Id.popInvadd);
+			menu.Inflate (Resource.Menu.popupHis);
+
 			menu.MenuItemClick += (s1, arg1) => {
 				
 				if (arg1.Item.TitleFormatted.ToString ().ToLower () == "print") {
 					PrintInv (item,1);	
 				}else if (arg1.Item.TitleFormatted.ToString ().ToLower () == "print 2 copy") {
 					PrintInv (item,2);	
-				}  
+				} 
+				else if (arg1.Item.TitleFormatted.ToString ().ToLower () == "filter") {
+					ShowDateRangeLookUp();
+				} 
 			};
 			menu.Show ();
+		}
+
+		void ShowDateRangeLookUp()
+		{
+			var intent = new Intent (this, typeof(DateRange));
+			intent.PutExtra ("eventid", "2020");
+			StartActivity (intent);
 		}
 
 		void populate(List<Invoice> list)
@@ -115,7 +138,7 @@ namespace wincom.mobile.erp
 			using (var db = new SQLite.SQLiteConnection(pathToDatabase))
 			{
 				var list2 = db.Table<Invoice>()
-					.Where(x=>x.isUploaded==true)
+					.Where(x=>x.isUploaded==true&&x.invdate>=sdate&&x.invdate<=edate)
 					.OrderByDescending (x => x.invno)
 					.ToList<Invoice>();
 				foreach(var item in list2)
@@ -143,6 +166,12 @@ namespace wincom.mobile.erp
 				StartPrint (inv, list,noofcopy);
 				if (!inv.isPrinted) {
 					updatePrintedStatus (inv);
+					var found =listData.Where (x => x.invno == inv.invno).ToList ();
+					if (found.Count > 0) {
+						found [0].isPrinted = true;
+						SetViewDlg viewdlg = SetViewDelegate;
+						listView.Adapter = new GenericListAdapter<Invoice> (this, listData, Resource.Layout.ListItemRow, viewdlg);
+					}
 				}
 			}
 		}
@@ -210,6 +239,23 @@ namespace wincom.mobile.erp
 			}
 		}
 
+		public event nsEventHandler eventHandler;
+
+		public void FireEvent(object sender,EventParam eventArgs)
+		{
+			if (eventHandler != null)
+				eventHandler (sender, eventArgs);
+		}
+
+		public void PerformEvent(object sender, EventParam e)
+		{
+			switch (e.EventID) {
+			case 2020:
+				sdate =Utility.ConvertToDate(e.Param ["DATE1"].ToString ());
+				edate=Utility.ConvertToDate(e.Param ["DATE2"].ToString ());
+				break;
+			}
+		}
 
 	}
 }

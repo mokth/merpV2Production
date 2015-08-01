@@ -250,6 +250,31 @@ namespace wincom.mobile.erp
 			}
 
 		}
+
+
+		public static Invoice GetInvoice(string pathToDatabase,string invno)
+		{
+			Invoice inv=null;
+			using (var db = new SQLite.SQLiteConnection (pathToDatabase)) {
+				var list2 = db.Table<Invoice> ().ToList<Invoice>().Where(x=>x.invno==invno).ToList();
+				if (list2.Count > 0) {
+					inv = list2 [0];
+				}
+			}
+			return inv;
+		}
+
+		public static CNNote GetCNNote(string pathToDatabase,string cnno)
+		{
+			CNNote inv=null;
+			using (var db = new SQLite.SQLiteConnection (pathToDatabase)) {
+				var list2 = db.Table<CNNote> ().ToList<CNNote>().Where(x=>x.cnno==cnno).ToList();
+				if (list2.Count > 0) {
+					inv = list2 [0];
+				}
+			}
+			return inv;
+		}
 	}
 }
 

@@ -28,6 +28,12 @@ namespace wincom.mobile.erp
 			_dlg = viewdlg;
 		}
 
+		public void Refresh(List<T> _list)
+		{
+			this.list = _list;
+			NotifyDataSetChanged ();
+		}
+
 		public override int Count {
 			get { return Filterlist.Count; }
 		}

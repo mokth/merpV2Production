@@ -118,7 +118,8 @@ namespace wincom.mobile.erp
 			Invoice item = (Invoice)clsobj;
 			view.FindViewById<TextView> (Resource.Id.invdate).Text = item.invdate.ToString ("dd-MM-yy");
 			view.FindViewById<TextView> (Resource.Id.invno).Text = item.invno;
-			view.FindViewById<TextView> (Resource.Id.trxtype).Text = item.trxtype;
+			string trxtype = (item.trxtype == "CASH") ? "COD" : "INV";
+			view.FindViewById<TextView> (Resource.Id.trxtype).Text = trxtype;
 			view.FindViewById<TextView>(Resource.Id.invcust).Text = item.description;
 			//view.FindViewById<TextView> (Resource.Id.Amount).Text = item.amount.ToString("n2");
 			view.FindViewById<TextView> (Resource.Id.TaxAmount).Text = item.taxamt.ToString("n2");

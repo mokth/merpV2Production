@@ -28,7 +28,7 @@
                 android:id="@+id/butnewInv"
                 android:drawableLeft="@drawable/add"
                 android:width="120dp"
-                android:text="ADD" />
+                android:text="NEW" />
         </TableRow>
     </TableLayout>
     <ListView

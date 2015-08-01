@@ -1,11 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-   <item android:id="@+id/popInvadd"
-          android:title="ADD" />   
- 	<item android:id="@+id/popInvedit"
-          android:title="EDIT" />    
-    <item android:id="@+id/popInvdelete"
-          android:title="DELETE" />  
+   
+   <item android:id="@+id/popInvfilter"
+          android:title="FILTER" />   
     <item android:id="@+id/popInvprint"
           android:title="PRINT" />   
     <item android:id="@+id/popInvprint2"

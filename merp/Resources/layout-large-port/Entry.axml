@@ -228,7 +228,7 @@
                 android:id="@+id/Cancel"
                 android:drawableLeft="@drawable/left"
                 android:width="140dp"
-                android:text="CANCEL" />
+                android:text="BACK" />
         </TableRow>
         <TableRow
             android:id="@+id/tableRow2">

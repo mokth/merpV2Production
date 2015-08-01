@@ -17,7 +17,7 @@ using Java.Util;
 namespace wincom.mobile.erp
 {
 	[Activity (Label = "CREDIT NOTE LIST")]			
-	public class CNAllActivity : Activity
+	public class CNAllActivity : Activity,IEventListener
 	{
 		ListView listView ;
 		List<CNNote> listData = new List<CNNote> ();
@@ -29,15 +29,19 @@ namespace wincom.mobile.erp
 		Stream mmOutputStream;
 		AdPara apara=null;
 		CompanyInfo compinfo;
+		DateTime sdate;
+		DateTime edate;
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 			if (!((GlobalvarsApp)this.Application).ISLOGON) {
 				Finish ();
 			}
+			EventManagerFacade.Instance.GetEventManager().AddListener(this);
 			// Create your application here
 			SetContentView (Resource.Layout.ListView);
 			pathToDatabase = ((GlobalvarsApp)this.Application).DATABASE_PATH;
+			Utility.GetDateRange (ref sdate,ref edate);
 			populate (listData);
 			apara =  DataHelper.GetAdPara (pathToDatabase);
 			listView = FindViewById<ListView> (Resource.Id.feedList);
@@ -96,7 +100,7 @@ namespace wincom.mobile.erp
 		void OnListItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e) {
 			CNNote item = listData.ElementAt (e.Position);
 			PopupMenu menu = new PopupMenu (e.Parent.Context, e.View);
-			menu.Inflate (Resource.Menu.popupInv);
+			menu.Inflate (Resource.Menu.popupHis);
 			menu.Menu.RemoveItem (Resource.Id.popInvdelete);
 			menu.Menu.RemoveItem (Resource.Id.popInvadd);
 			menu.MenuItemClick += (s1, arg1) => {
@@ -105,9 +109,18 @@ namespace wincom.mobile.erp
 					PrintInv (item,1);	
 				}else if (arg1.Item.TitleFormatted.ToString ().ToLower () == "print 2 copy") {
 					PrintInv (item,2);	
+				}else if (arg1.Item.TitleFormatted.ToString ().ToLower () == "filter") {
+					ShowDateRangeLookUp();
 				}  
 			};
 			menu.Show ();
+		}
+
+		void ShowDateRangeLookUp()
+		{
+			var intent = new Intent (this, typeof(DateRange));
+			intent.PutExtra ("eventid", "2021");
+			StartActivity (intent);
 		}
 
 		void populate(List<CNNote> list)
@@ -115,7 +128,7 @@ namespace wincom.mobile.erp
 			using (var db = new SQLite.SQLiteConnection(pathToDatabase))
 			{
 				var list2 = db.Table<CNNote>()
-					.Where(x=>x.isUploaded==true)
+					.Where(x=>x.isUploaded==true&&x.invdate>=sdate&&x.invdate<=edate)
 					.OrderByDescending (x => x.cnno)
 					.ToList<CNNote>();
 				foreach(var item in list2)
@@ -143,6 +156,12 @@ namespace wincom.mobile.erp
 				StartPrint (inv, list,noofcopy);
 				if (!inv.isPrinted) {
 					updatePrintedStatus (inv);
+					var found =listData.Where (x => x.cnno == inv.cnno).ToList ();
+					if (found.Count > 0) {
+						found [0].isPrinted = true;
+						SetViewDlg viewdlg = SetViewDelegate;
+						listView.Adapter = new GenericListAdapter<CNNote> (this, listData, Resource.Layout.ListItemRow, viewdlg);
+					}
 				}
 			}
 		}
@@ -209,6 +228,23 @@ namespace wincom.mobile.erp
 			}
 		}
 
+		public event nsEventHandler eventHandler;
+
+		public void FireEvent(object sender,EventParam eventArgs)
+		{
+			if (eventHandler != null)
+				eventHandler (sender, eventArgs);
+		}
+
+		public void PerformEvent(object sender, EventParam e)
+		{
+			switch (e.EventID) {
+			case 2021:
+				sdate =Utility.ConvertToDate(e.Param ["DATE1"].ToString ());
+				edate=Utility.ConvertToDate(e.Param ["DATE2"].ToString ());
+				break;
+			}
+		}
 
 	}
 }
