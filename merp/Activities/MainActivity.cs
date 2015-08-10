@@ -405,7 +405,8 @@ namespace wincom.mobile.erp
 
 		void ButlogOff_Click (object sender, EventArgs e)
 		{
-			RunOnUiThread (() => ExitApp ());
+			//RunOnUiThread (() => ExitApp ());
+			RunOnUiThread (() => ExitAndLogOff());
 
 		}
 

@@ -73,8 +73,9 @@ namespace wincom.mobile.erp
 					ShowMainActivity (user.CompCode, user.BranchCode);		
 					return;
 				} else {
-					txtcode.Enabled = false;
-					txtcode.SetBackgroundColor (Android.Graphics.Color.Gray); 
+					//txtcode.Enabled = false;
+					//txtcode.SetBackgroundColor (Android.Graphics.Color.Gray); 
+					txtcode.Visibility = ViewStates.Gone;
 					login.Click += (object sender, EventArgs e) => {
 						LoginLocal(user);
 					};
@@ -215,6 +216,7 @@ namespace wincom.mobile.erp
 		{
 			EditText userid = FindViewById<EditText> (Resource.Id.login_userName);
 			EditText passw = FindViewById<EditText> (Resource.Id.login_password);
+			EditText code = FindViewById<EditText> (Resource.Id.login_code);
 
 			if (user.UserID.ToUpper () == userid.Text.ToUpper ()) {
 				if (user.Password == passw.Text) {
