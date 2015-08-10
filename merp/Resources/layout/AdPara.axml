@@ -20,7 +20,7 @@
         android:id="@+id/txtprinters"
         android:textSize="17sp"
         android:paddingLeft="5dp"
-        android:background="@android:drawable/spinner_dropdown_background"
+        android:background="@drawable/bluethem_spinner_background_holo_light"
         android:fitsSystemWindows="false" />
     <EditText
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -30,7 +30,7 @@
         android:textColor="#ff140000"
         android:textSize="17sp"
         android:paddingLeft="5dp"
-        android:background="@android:drawable/edit_text"
+        android:background="@drawable/bluethem_textfield_disabled_holo_light"
         android:hint="Bluetooth printer name" />
     <TextView
         android:text="PAPER WIDTH"
@@ -48,7 +48,7 @@
         android:id="@+id/txtSize"
         android:textSize="17sp"
         android:paddingLeft="5dp"
-        android:background="@android:drawable/spinner_dropdown_background"
+        android:background="@drawable/bluethem_spinner_background_holo_light"
         android:fitsSystemWindows="false" />
     <TextView
         android:text="INVOICE/CASH BILL PREFIX"
@@ -67,7 +67,7 @@
         android:textSize="17sp"
         android:paddingLeft="5dp"
         android:textColor="#ff140000"
-        android:background="@android:drawable/edit_text"
+        android:background="@drawable/bluethem_textfield_disabled_holo_light"
         android:editable="false" />
     <TextView
         android:text="CREDIT NOTE PREFIX"
@@ -86,7 +86,7 @@
         android:textSize="17sp"
         android:paddingLeft="5dp"
         android:textColor="#ff140000"
-        android:background="@android:drawable/edit_text"
+        android:background="@drawable/bluethem_textfield_disabled_holo_light"
         android:editable="false" />
     <TextView
         android:text="RECEIPT TITLE"
@@ -105,7 +105,7 @@
         android:textSize="17sp"
         android:paddingLeft="5dp"
         android:textColor="#ff140000"
-        android:background="@android:drawable/edit_text" />
+        android:background="@drawable/bluethem_edit_text_holo_light" />
     <TableLayout
         android:minWidth="25px"
         android:minHeight="25px"

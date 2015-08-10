@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace wincom.mobile.erp
 {
@@ -33,6 +34,22 @@ namespace wincom.mobile.erp
 			sdate = new DateTime (today.Year, today.Month , 1);
 			sdate = sdate.AddMonths (-3);
 			edate = today.AddMonths (1).AddDays (-1);
+		}
+
+		public static bool IsValidDateString (string datestr)
+		{   
+			bool valid = false;
+			DateTime sdate;
+			CultureInfo culture;
+			DateTimeStyles styles;
+			culture = CultureInfo.CreateSpecificCulture("en-GB"); 
+			styles = DateTimeStyles.None;
+
+			if (DateTime.TryParse (datestr, culture, styles, out sdate)) {
+				valid = true;
+			}
+
+			return valid;
 		}
 	}
 }

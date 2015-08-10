@@ -131,7 +131,10 @@ namespace wincom.mobile.erp
 				}else if (arg1.Item.TitleFormatted.ToString().ToLower()=="edit")
 				{
 					Edit(item);
-				}
+				}else if (arg1.Item.TitleFormatted.ToString().ToLower()=="test print")
+				{
+					PrintTest();	
+				} 
 
 			};
 			menu.Show ();
@@ -197,20 +200,6 @@ namespace wincom.mobile.erp
 			StartActivity(intent);
 		}
 
-//		void PrintInvSumm(DateTime printdate1,DateTime printdate2)
-//		{
-//			mmDevice = null;
-//			findBTPrinter ();
-//
-//			if (mmDevice == null)
-//				return;
-//			
-//			string userid = ((GlobalvarsApp)this.Application).USERID_CODE;
-//			PrintInvHelper prnHelp = new PrintInvHelper (pathToDatabase, userid);
-//			string msg = prnHelp.PrintInvSumm(mmSocket, mmDevice,printdate1,printdate2);
-//			Toast.MakeText (this, msg, ToastLength.Long).Show ();	
-//
-//		}
 		void PrintInv(Invoice inv,int noofcopy)
 		{
 			//Toast.MakeText (this, "print....", ToastLength.Long).Show ();	
@@ -234,6 +223,19 @@ namespace wincom.mobile.erp
 				}
 			}
 		
+		}
+
+		void PrintTest()
+		{
+			mmDevice = null;
+			findBTPrinter ();
+			if (mmDevice != null) {
+				string userid = ((GlobalvarsApp)this.Application).USERID_CODE;
+				PrintInvHelper prnHelp = new PrintInvHelper (pathToDatabase, userid);
+				string msg =prnHelp.OpenBTAndPrintTest(mmSocket, mmDevice);
+				Toast.MakeText (this, msg, ToastLength.Long).Show ();	
+			}
+
 		}
 
 		void updatePrintedStatus(Invoice inv)

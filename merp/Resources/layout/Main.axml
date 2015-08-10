@@ -4,65 +4,83 @@
     android:layout_height="fill_parent">
     <LinearLayout
         android:orientation="vertical"
-        android:padding="10dip"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingTop="1dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="1dp"
+        android:paddingLeft="10dp">
         <Button
             android:text="INVOICE"
-            style="@style/XamButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/butSecond"
+            android:height="53dp"
+            android:background="@drawable/bluethem_btn_default_holo_light"
             android:drawableLeft="@drawable/shop" />
         <Button
             android:text="CREDIT NOTE"
+            android:height="53dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:drawableLeft="@drawable/shop"
+            android:drawableLeft="@drawable/bill"
+            android:background="@drawable/bluethem_btn_default_holo_light"
             android:id="@+id/butcnnote" />
         <Button
+            android:height="53dp"
             android:text="TRANSACTION LIST"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:drawableLeft="@drawable/report"
+            android:drawableLeft="@drawable/shoplist"
+            android:background="@drawable/bluethem_btn_default_holo_light"
             android:id="@+id/butInvlist" />
         <Button
+            android:height="53dp"
             android:text="MASTER ITEM"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:drawableLeft="@drawable/item"
+            android:background="@drawable/bluethem_btn_default_holo_light"
             android:id="@+id/butMaster" />
         <Button
+            android:height="53dp"
             android:text="DOWNLOAD/UPLOAD"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:drawableLeft="@drawable/download"
+            android:background="@drawable/bluethem_btn_default_holo_light"
             android:id="@+id/butDown" />
         <Button
+            android:height="53dp"
             android:text="SETTINGS"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:drawableLeft="@drawable/download"
+            android:drawableLeft="@drawable/settings"
+            android:background="@drawable/bluethem_btn_default_holo_light"
             android:id="@+id/butsetting" />
         <Button
+            android:height="53dp"
             android:text="ABOUT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:drawableLeft="@drawable/about"
+            android:background="@drawable/bluethem_btn_default_holo_light"
             android:id="@+id/butAbout" />
         <Button
+            android:height="53dp"
             android:text="EXIT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:drawableLeft="@drawable/exit"
+            android:background="@drawable/bluethem_btn_default_holo_light"
             android:id="@+id/butOut" />
     </LinearLayout>
 </ScrollView>

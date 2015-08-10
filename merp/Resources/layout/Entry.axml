@@ -18,7 +18,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/lbinvno"
-                android:textColor="@android:color/black"
+                android:textColor="#ff093bf6"
                 android:paddingLeft="5dp" />
             <TextView
                 android:textAppearance="?android:attr/textAppearanceMedium"
@@ -28,7 +28,7 @@
                 android:editable="false"
                 android:textColor="#ff140000"
                 android:paddingLeft="5dp"
-                android:background="@android:drawable/edit_text" />
+                android:background="@drawable/bluethem_textfield_disabled_holo_light" />
             <TextView
                 android:text="CUSTOMER"
                 android:textAppearance="?android:attr/textAppearanceMedium"
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/lbinvno"
                 android:paddingLeft="5dp"
-                android:textColor="@android:color/black" />
+                android:textColor="#ff093bf6" />
             <TextView
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:layout_width="match_parent"
@@ -45,7 +45,7 @@
                 android:editable="false"
                 android:paddingLeft="5dp"
                 android:textColor="#ff140000"
-                android:background="@android:drawable/edit_text" />
+                android:background="@drawable/bluethem_textfield_disabled_holo_light" />
         </LinearLayout>
         <LinearLayout
             android:orientation="vertical"
@@ -77,7 +77,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/txtcode"
                         android:paddingLeft="5dp"
-                        android:background="@android:drawable/spinner_dropdown_background"
+                        android:background="@drawable/bluethem_spinner_background_holo_light"
                         android:fitsSystemWindows="false" />
                 </LinearLayout>
                 <LinearLayout
@@ -131,7 +131,7 @@
                         android:id="@+id/txtqty"
                         android:paddingLeft="5dp"
                         android:textColor="#ff140000"
-                        android:background="@android:drawable/edit_text" />
+                        android:background="@drawable/bluethem_edit_text_holo_light" />
                     <EditText
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:inputType="numberDecimal|numberSigned"
@@ -140,7 +140,8 @@
                         android:id="@+id/txtprice"
                         android:textColor="#ff140000"
                         android:paddingLeft="5dp"
-                        android:background="@android:drawable/edit_text"
+                        android:background="@drawable/bluethem_edit_text_holo_light"
+                        android:editable="false"
                         android:enabled="true" />
                     <TextView
                         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -149,10 +150,10 @@
                         android:id="@+id/txttax"
                         android:textColor="#ff140000"
                         android:paddingLeft="5dp"
-                        android:background="@android:drawable/edit_text"
+                        android:background="@drawable/bluethem_textfield_disabled_holo_light"
                         android:selectAllOnFocus="false"
                         android:editable="false"
-                        android:width="40dp" />
+                        android:width="70dp" />
                 </TableRow>
                 <TableRow
                     android:id="@+id/tableRow1">
@@ -185,7 +186,7 @@
                         android:id="@+id/txttaxamt"
                         android:textColor="#ff140000"
                         android:paddingLeft="5dp"
-                        android:background="@android:drawable/edit_text"
+                        android:background="@drawable/bluethem_textfield_disabled_holo_light"
                         android:editable="false"
                         android:enabled="false" />
                     <EditText
@@ -196,7 +197,7 @@
                         android:id="@+id/txtamount"
                         android:textColor="#ff140000"
                         android:paddingLeft="5dp"
-                        android:background="@android:drawable/edit_text"
+                        android:background="@drawable/bluethem_textfield_disabled_holo_light"
                         android:editable="false"
                         android:enabled="false" />
                 </TableRow>

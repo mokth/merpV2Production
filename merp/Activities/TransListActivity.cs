@@ -13,7 +13,7 @@ using Android.Widget;
 
 namespace wincom.mobile.erp
 {
-	[Activity (Label = "TransListActivity")]			
+	[Activity (Label = "TRANSACTION")]			
 	public class TransListActivity : Activity
 	{
 		protected override void OnCreate (Bundle bundle)

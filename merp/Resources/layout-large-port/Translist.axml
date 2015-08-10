@@ -23,7 +23,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:height="80dp"
             android:textSize="24sp"
-            android:drawableLeft="@drawable/shop"
+            android:drawableLeft="@drawable/bill"
             android:id="@+id/butCNlist" />
         <Button
             android:text="INVOICE SUMMARY"
@@ -32,7 +32,7 @@
             android:height="80dp"
             android:textSize="24sp"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:drawableLeft="@drawable/print"
+            android:drawableLeft="@drawable/summary"
             android:id="@+id/butInvsumm" />
         <Button
             android:text="MAIN MENU"
@@ -41,7 +41,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:height="80dp"
             android:textSize="24sp"
-            android:drawableLeft="@drawable/left"
+            android:drawableLeft="@drawable/home"
             android:id="@+id/butMain" />
     </LinearLayout>
 </ScrollView>

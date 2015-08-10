@@ -68,6 +68,7 @@ namespace wincom.mobile.erp
 			DownloadHelper download= new DownloadHelper();
 			download.Downloadhandle = DownItemsDoneDlg; 
 			download.CallingActivity = this;
+			download.NotDownloadAll ();
 			download.startDownloadItem ();
 		}
 
@@ -78,6 +79,7 @@ namespace wincom.mobile.erp
 			DownloadHelper download= new DownloadHelper();
 			download.Downloadhandle =  DownCustDoneDlg; 
 			download.CallingActivity = this;
+			download.NotDownloadAll ();
 			download.startDownloadCustomer ();
 		}
 

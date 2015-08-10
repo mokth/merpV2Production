@@ -78,7 +78,8 @@ namespace wincom.mobile.erp
 			}
 			dataAdapter = new ArrayAdapter<String>(this,Resource.Layout.spinner_item, icodes);
 			// Drop down layout style - list view with radio button
-			dataAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+			//dataAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+			dataAdapter.SetDropDownViewResource(Resource.Layout.SimpleSpinnerDropDownItemEx);
 			// attaching data adapter to spinner
 			spinner.Adapter =dataAdapter;
 			LoadData ();
@@ -157,6 +158,10 @@ namespace wincom.mobile.erp
 			bool IsSave = false;
 			CNNote inv = new CNNote ();
 			EditText trxdate =  FindViewById<EditText> (Resource.Id.newinv_date);
+			if (!Utility.IsValidDateString (trxdate.Text)) {
+				Toast.MakeText (this,"Invalid Transaction Date format...", ToastLength.Long).Show ();	
+				return IsSave;
+			}
 			DateTime invdate = Utility.ConvertToDate (trxdate.Text);
 			Spinner spinner = FindViewById<Spinner> (Resource.Id.newinv_custcode);
 			TextView custname = FindViewById<TextView> (Resource.Id.newinv_custname);

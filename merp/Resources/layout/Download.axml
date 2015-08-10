@@ -13,6 +13,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:drawableLeft="@drawable/download"
+            android:height="53dp"
             android:id="@+id/butDown" />
         <Button
             android:text="DOWNLOAD CUSTOMER"
@@ -20,6 +21,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:drawableLeft="@drawable/download"
+            android:height="53dp"
             android:id="@+id/butDownCust" />
         <Button
             android:text="DOWNLOAD SETTINGS"
@@ -27,6 +29,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:drawableLeft="@drawable/download"
+            android:height="53dp"
             android:id="@+id/butDownSetting" />
         <Button
             android:text="UPLOAD INVOICE"
@@ -34,6 +37,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:drawableLeft="@drawable/upload"
+            android:height="53dp"
             android:id="@+id/butupload" />
         <Button
             android:text="MAIN MENU"
@@ -41,6 +45,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:drawableLeft="@drawable/left"
+            android:height="53dp"
             android:id="@+id/butMain" />
     </LinearLayout>
 </ScrollView>

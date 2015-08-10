@@ -76,7 +76,8 @@ namespace wincom.mobile.erp
 			dataAdapter2 =ArrayAdapter.CreateFromResource (
 				this, Resource.Array.trxtype, Resource.Layout.spinner_item);
 		
-			dataAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+			//dataAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
+			dataAdapter.SetDropDownViewResource(Resource.Layout.SimpleSpinnerDropDownItemEx);
 			dataAdapter2.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
 
 			// attaching data adapter to spinner
@@ -181,6 +182,10 @@ namespace wincom.mobile.erp
 			bool lSave = false;
 			Invoice inv = new Invoice ();
 			EditText trxdate =  FindViewById<EditText> (Resource.Id.newinv_date);
+			if (!Utility.IsValidDateString (trxdate.Text)) {
+				Toast.MakeText (this,"Invalid Transaction Date format...", ToastLength.Long).Show ();	
+				return lSave;
+			}
 			DateTime invdate = Utility.ConvertToDate (trxdate.Text);
 			Spinner spinner = FindViewById<Spinner> (Resource.Id.newinv_custcode);
 			Spinner spinner2 = FindViewById<Spinner> (Resource.Id.newinv_type);

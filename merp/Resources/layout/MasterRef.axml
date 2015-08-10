@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:drawableLeft="@drawable/left"
+            android:drawableLeft="@drawable/home"
             android:id="@+id/butMain" />
     </LinearLayout>
 </ScrollView>

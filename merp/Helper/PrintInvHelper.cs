@@ -40,19 +40,20 @@ namespace wincom.mobile.erp
 
 		}
 
+		public string OpenBTAndPrintTest(BluetoothSocket mmSocket,BluetoothDevice mmDevice )
+		{
+			string msg = "";
+
+			BluetoothMiniTest (mmSocket, mmDevice);
+			return msg;
+		}
+
+
 		#region Print Receipt
 		public string OpenBTAndPrint(BluetoothSocket mmSocket,BluetoothDevice mmDevice,Invoice inv,InvoiceDtls[] list,int noofcopy )
 		{string msg = "";
-//			if (apara.PrinterName.ToUpper().Contains ("PT-I")) {
-//				msg =BlueToothPT(mmSocket, mmDevice, inv, list, noofcopy);
-//			} 
-//			if (apara.PrinterName.ToUpper().Contains ("BLUETOOTH"))  {
-//				msg =BluetoothMini (mmSocket, mmDevice, inv, list, noofcopy);
-//			}
 
 			BluetoothMini (mmSocket, mmDevice, inv, list, noofcopy);
-			//File.WriteAllText (sdcard, errmsg.ToString());
-			//errmsg.Clear ();
 			return msg;
 		}
 
@@ -77,7 +78,7 @@ namespace wincom.mobile.erp
 			PrintTaxSumm (ref test, list);
 			if (needFooter) {
 				PrintFooter (ref test);
-				test += "\nTHANK YOU\n\n\n\n";
+				test += "\nTHANK YOU\n\n\n\n\n\n\n\n";
 			}else test += "\n\n";
 		}
 
@@ -185,6 +186,60 @@ namespace wincom.mobile.erp
 					//txtv.Text = "Device not connected";
 					msg= "Device not connected";	
 					//errmsg.Append(msg);
+				}
+			} catch (Exception ex) {
+				msg = ex.Message;
+			}
+		}
+
+		//Bluetooth Printer -Mini Bluetooth Printer
+		public void BluetoothMiniTest(BluetoothSocket mmSocket,BluetoothDevice mmDevice)
+		{
+			msg = "";
+			Stream mmOutputStream;
+			//TextView txtv = FindViewById<TextView> (Resource.Id.textView2);
+			try {
+				UUID uuid = UUID.FromString ("00001101-0000-1000-8000-00805F9B34FB");
+
+				mmSocket = mmDevice.CreateInsecureRfcommSocketToServiceRecord (uuid);
+				if (mmSocket == null) {
+					msg =  "Error creating sockect";
+					return;
+				}
+				if (mmDevice.BondState == Bond.Bonded) {
+					TrytoConnect(mmSocket);
+
+					Thread.Sleep (300);
+					mmOutputStream = mmSocket.OutputStream;
+					byte[] charfont;
+					charfont = new Byte[] { 27, 64 }; //Char font 9x17
+					mmOutputStream.Write(charfont, 0, charfont.Length);
+					if (apara.PaperSize=="58mm")
+					{
+						charfont = new Byte[] { 27, 33, 1 }; //Char font 9x17
+						mmOutputStream.Write(charfont, 0, charfont.Length);
+					}
+					if (apara.PaperSize=="80mm")
+					{
+						charfont = new Byte[] { 27, 33, 0 }; //Char font 12x24
+						mmOutputStream.Write(charfont, 0, charfont.Length);
+					}
+					charfont = new Byte[] { 28, 38 };
+					mmOutputStream.Write(charfont, 0, charfont.Length);
+					string test = "";
+					PrintCompHeader (ref test);
+					test = test+"\n\n\n\n\n";
+					byte[] cc = Encoding.GetEncoding("GB18030").GetBytes(test);
+					mmOutputStream.Write (cc,0, cc.Length);
+					Thread.Sleep (300);
+					charfont = new Byte[] { 28, 46 };
+					mmOutputStream.Write(charfont, 0, charfont.Length);
+					mmOutputStream.Close ();
+					mmSocket.Close ();
+					msg ="Printing....";
+				} else {
+					msg= "Device not connected";	
+
 				}
 			} catch (Exception ex) {
 				msg = ex.Message;
@@ -312,8 +367,8 @@ namespace wincom.mobile.erp
 					{
 						test += "\nTHANK YOU\n\n";
 						PrintTotal (ref test,ttlAmt, ttltax, invTtlAmt,invTtlTax);	
-						test += "\n\n\n";
-					}else test += "\nTHANK YOU\n\n\n\n";
+						test += "n\n\n\n\n\n\n\n";
+					}else test += "\nTHANK YOUn\n\n\n\n\n\n\n";
 
 					//byte[] cc =ASCIIEncoding.ASCII.GetBytes(test);
 					byte[] cc = Encoding.GetEncoding("GB18030").GetBytes(test);
@@ -412,8 +467,9 @@ namespace wincom.mobile.erp
 				test += names [0] + "\n";
 
 				if ((names [1].Trim ().Length + comp.RegNo.Trim ().Length + 2) > 42) {
-					test += names [1].Trim () + "\n";
-					test += "(" + comp.RegNo.Trim () + ")\n";
+					//test += names [1].Trim () + "\n";
+					//test += "(" + comp.RegNo.Trim () + ")\n";
+					PrintLongText (ref test, names [1].Trim () + "(" + comp.RegNo.Trim () + ")");
 				} else {
 					test += names [1].Trim () + "(" + comp.RegNo.Trim () + ")\n";
 				}
@@ -439,6 +495,22 @@ namespace wincom.mobile.erp
 
 		}
 
+		void PrintLongText(ref string test,string text)
+		{
+			if (text.Length > 42) {
+			
+				string temp = text.Substring(0,42);
+				int pos = temp.LastIndexOf(" ");
+				string line1 = text.Substring(0, pos);
+				string line2 = text.Substring(pos);
+				test = test + line1.Trim() + "\n";
+				test = test + line2.Trim() + "\n";
+			} else {
+			
+				test = test + text + "\n";
+			}
+		}
+
 		void PrintCustomer (ref string test,string custcode)
 		{
 			Trader comp = DataHelper.GetTrader (pathToDatabase, custcode);
@@ -452,7 +524,8 @@ namespace wincom.mobile.erp
 			string addr4 =string.IsNullOrEmpty (comp.Addr4) ? "" : comp.Addr4.Trim ();
 			string gst =string.IsNullOrEmpty (comp.gst) ? "" : comp.gst.Trim ();
 
-			test += comp.CustName.Trim () + "\n";
+			PrintLongText (ref test, comp.CustName.Trim ());
+
 			if (addr1!="")
 				test += comp.Addr1.Trim () + "\n";	
 			if (addr2!="")

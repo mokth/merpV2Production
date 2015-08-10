@@ -9,7 +9,7 @@
         android:layout_height="wrap_content">
         <Button
             android:text="INVOICE"
-            style="@style/XamButton"
+            android:background="@drawable/bluethem_btn_default_holo_light"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -18,24 +18,27 @@
             android:height="80dp"
             android:drawableLeft="@drawable/shop" />
         <Button
+            android:background="@drawable/bluethem_btn_default_holo_light"
             android:text="CREDIT NOTE"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:height="80dp"
             android:textSize="24sp"
-            android:drawableLeft="@drawable/shop"
+            android:drawableLeft="@drawable/bill"
             android:id="@+id/butcnnote" />
         <Button
+            android:background="@drawable/bluethem_btn_default_holo_light"
             android:text="TRANSACTION LIST"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:height="80dp"
             android:textSize="24sp"
-            android:drawableLeft="@drawable/shop"
+            android:drawableLeft="@drawable/shoplist"
             android:id="@+id/butInvlist" />
         <Button
+            android:background="@drawable/bluethem_btn_default_holo_light"
             android:text="MASTER ITEM"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,6 +48,7 @@
             android:drawableLeft="@drawable/item"
             android:id="@+id/butMaster" />
         <Button
+            android:background="@drawable/bluethem_btn_default_holo_light"
             android:text="DOWNLOAD/UPLOAD"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,15 +58,17 @@
             android:drawableLeft="@drawable/download"
             android:id="@+id/butDown" />
         <Button
+            android:background="@drawable/bluethem_btn_default_holo_light"
             android:text="SETTINGS"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:height="80dp"
             android:textSize="24sp"
-            android:drawableLeft="@drawable/download"
+            android:drawableLeft="@drawable/settings"
             android:id="@+id/butsetting" />
         <Button
+            android:background="@drawable/bluethem_btn_default_holo_light"
             android:text="ABOUT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -72,6 +78,7 @@
             android:drawableLeft="@drawable/about"
             android:id="@+id/butAbout" />
         <Button
+            android:background="@drawable/bluethem_btn_default_holo_light"
             android:text="EXIT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

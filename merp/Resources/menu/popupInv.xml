@@ -6,6 +6,8 @@
           android:title="EDIT" />    
     <item android:id="@+id/popInvdelete"
           android:title="DELETE" />  
+    <item android:id="@+id/popInvtestprint"
+          android:title="TEST PRINT" />   
     <item android:id="@+id/popInvprint"
           android:title="PRINT" />   
     <item android:id="@+id/popInvprint2"

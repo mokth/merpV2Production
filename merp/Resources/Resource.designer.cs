@@ -31,11 +31,11 @@ namespace wincom.mobile.erp
 		public partial class Array
 		{
 			
-			// aapt resource value: 0x7f060001
-			public const int papersize_array = 2131099649;
+			// aapt resource value: 0x7f070001
+			public const int papersize_array = 2131165185;
 			
-			// aapt resource value: 0x7f060000
-			public const int trxtype = 2131099648;
+			// aapt resource value: 0x7f070000
+			public const int trxtype = 2131165184;
 			
 			static Array()
 			{
@@ -63,26 +63,29 @@ namespace wincom.mobile.erp
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f040008
-			public const int ab_background = 2130968584;
-			
 			// aapt resource value: 0x7f040009
-			public const int ab_bottom_shadow_1 = 2130968585;
+			public const int ab_background = 2130968585;
 			
 			// aapt resource value: 0x7f04000a
-			public const int ab_bottom_shadow_2 = 2130968586;
-			
-			// aapt resource value: 0x7f040007
-			public const int action_bar_title_color = 2130968583;
+			public const int ab_bottom_shadow_1 = 2130968586;
 			
 			// aapt resource value: 0x7f04000b
-			public const int btn_bg_color = 2130968587;
+			public const int ab_bottom_shadow_2 = 2130968587;
 			
-			// aapt resource value: 0x7f04000c
-			public const int btn_bg_shadow_color = 2130968588;
+			// aapt resource value: 0x7f040008
+			public const int action_bar_title_color = 2130968584;
 			
 			// aapt resource value: 0x7f040006
-			public const int main_background = 2130968582;
+			public const int bluethem_color = 2130968582;
+			
+			// aapt resource value: 0x7f04000c
+			public const int btn_bg_color = 2130968588;
+			
+			// aapt resource value: 0x7f04000d
+			public const int btn_bg_shadow_color = 2130968589;
+			
+			// aapt resource value: 0x7f040007
+			public const int main_background = 2130968583;
 			
 			// aapt resource value: 0x7f040001
 			public const int xam_blue = 2130968577;
@@ -115,8 +118,11 @@ namespace wincom.mobile.erp
 		public partial class Dimension
 		{
 			
-			// aapt resource value: 0x7f070000
-			public const int btn_corner_radius = 2131165184;
+			// aapt resource value: 0x7f050001
+			public const int btn_corner_radius = 2131034113;
+			
+			// aapt resource value: 0x7f050000
+			public const int tab_host_default_height = 2131034112;
 			
 			static Dimension()
 			{
@@ -141,79 +147,145 @@ namespace wincom.mobile.erp
 			public const int add = 2130837506;
 			
 			// aapt resource value: 0x7f020003
-			public const int btn_bg = 2130837507;
+			public const int Bill = 2130837507;
 			
 			// aapt resource value: 0x7f020004
-			public const int btn_bg_inactive = 2130837508;
+			public const int bluethem_btn_default_disabled_focused_holo_light = 2130837508;
 			
 			// aapt resource value: 0x7f020005
-			public const int btn_bg_normal = 2130837509;
+			public const int bluethem_btn_default_disabled_holo_light = 2130837509;
 			
 			// aapt resource value: 0x7f020006
-			public const int btn_bg_pressed = 2130837510;
+			public const int bluethem_btn_default_focused_holo_light = 2130837510;
 			
 			// aapt resource value: 0x7f020007
-			public const int create = 2130837511;
+			public const int bluethem_btn_default_holo_light = 2130837511;
 			
 			// aapt resource value: 0x7f020008
-			public const int discrete_shadow = 2130837512;
+			public const int bluethem_btn_default_normal_holo_light = 2130837512;
 			
 			// aapt resource value: 0x7f020009
-			public const int download = 2130837513;
+			public const int bluethem_btn_default_pressed_holo_light = 2130837513;
 			
 			// aapt resource value: 0x7f02000a
-			public const int even_row = 2130837514;
+			public const int bluethem_edit_text_holo_light = 2130837514;
 			
 			// aapt resource value: 0x7f02000b
-			public const int exit = 2130837515;
+			public const int bluethem_spinner_background_holo_light = 2130837515;
 			
 			// aapt resource value: 0x7f02000c
-			public const int ic_action_logo = 2130837516;
+			public const int bluethem_spinner_default_holo_light = 2130837516;
 			
 			// aapt resource value: 0x7f02000d
-			public const int Icon = 2130837517;
+			public const int bluethem_spinner_disabled_holo_light = 2130837517;
 			
 			// aapt resource value: 0x7f02000e
-			public const int item = 2130837518;
+			public const int bluethem_spinner_focused_holo_light = 2130837518;
 			
 			// aapt resource value: 0x7f02000f
-			public const int left = 2130837519;
+			public const int bluethem_spinner_pressed_holo_light = 2130837519;
 			
 			// aapt resource value: 0x7f020010
-			public const int listview_selector_even = 2130837520;
+			public const int bluethem_textfield_activated_holo_light = 2130837520;
 			
 			// aapt resource value: 0x7f020011
-			public const int listview_selector_odd = 2130837521;
+			public const int bluethem_textfield_default_holo_light = 2130837521;
 			
 			// aapt resource value: 0x7f020012
-			public const int odd_row = 2130837522;
+			public const int bluethem_textfield_disabled_focused_holo_light = 2130837522;
 			
 			// aapt resource value: 0x7f020013
-			public const int ok = 2130837523;
+			public const int bluethem_textfield_disabled_holo_light = 2130837523;
 			
 			// aapt resource value: 0x7f020014
-			public const int print = 2130837524;
+			public const int bluethem_textfield_focused_holo_light = 2130837524;
 			
 			// aapt resource value: 0x7f020015
-			public const int printer_blue = 2130837525;
+			public const int btn_bg = 2130837525;
 			
 			// aapt resource value: 0x7f020016
-			public const int report = 2130837526;
+			public const int btn_bg_inactive = 2130837526;
 			
 			// aapt resource value: 0x7f020017
-			public const int shop = 2130837527;
+			public const int btn_bg_normal = 2130837527;
 			
 			// aapt resource value: 0x7f020018
-			public const int shoplist = 2130837528;
+			public const int btn_bg_pressed = 2130837528;
 			
 			// aapt resource value: 0x7f020019
-			public const int trader = 2130837529;
+			public const int create = 2130837529;
 			
 			// aapt resource value: 0x7f02001a
-			public const int upload = 2130837530;
+			public const int discrete_shadow = 2130837530;
 			
 			// aapt resource value: 0x7f02001b
-			public const int wrench = 2130837531;
+			public const int download = 2130837531;
+			
+			// aapt resource value: 0x7f02001c
+			public const int even_row = 2130837532;
+			
+			// aapt resource value: 0x7f02001d
+			public const int exit = 2130837533;
+			
+			// aapt resource value: 0x7f02001e
+			public const int home = 2130837534;
+			
+			// aapt resource value: 0x7f02001f
+			public const int ic_action_logo = 2130837535;
+			
+			// aapt resource value: 0x7f020020
+			public const int Icon = 2130837536;
+			
+			// aapt resource value: 0x7f020021
+			public const int item = 2130837537;
+			
+			// aapt resource value: 0x7f020022
+			public const int left = 2130837538;
+			
+			// aapt resource value: 0x7f020023
+			public const int listview_selector_even = 2130837539;
+			
+			// aapt resource value: 0x7f020024
+			public const int listview_selector_odd = 2130837540;
+			
+			// aapt resource value: 0x7f020025
+			public const int logo = 2130837541;
+			
+			// aapt resource value: 0x7f020026
+			public const int odd_row = 2130837542;
+			
+			// aapt resource value: 0x7f020027
+			public const int ok = 2130837543;
+			
+			// aapt resource value: 0x7f020028
+			public const int print = 2130837544;
+			
+			// aapt resource value: 0x7f020029
+			public const int printer_blue = 2130837545;
+			
+			// aapt resource value: 0x7f02002a
+			public const int report = 2130837546;
+			
+			// aapt resource value: 0x7f02002b
+			public const int settings = 2130837547;
+			
+			// aapt resource value: 0x7f02002c
+			public const int shop = 2130837548;
+			
+			// aapt resource value: 0x7f02002d
+			public const int shoplist = 2130837549;
+			
+			// aapt resource value: 0x7f02002e
+			public const int summary = 2130837550;
+			
+			// aapt resource value: 0x7f02002f
+			public const int trader = 2130837551;
+			
+			// aapt resource value: 0x7f020030
+			public const int upload = 2130837552;
+			
+			// aapt resource value: 0x7f020031
+			public const int wrench = 2130837553;
 			
 			static Drawable()
 			{
@@ -511,13 +583,16 @@ namespace wincom.mobile.erp
 			public const int popInvprint2 = 2131361930;
 			
 			// aapt resource value: 0x7f0a008e
-			public const int popadd = 2131361934;
-			
-			// aapt resource value: 0x7f0a0090
-			public const int popdelete = 2131361936;
+			public const int popInvtestprint = 2131361934;
 			
 			// aapt resource value: 0x7f0a008f
-			public const int popedit = 2131361935;
+			public const int popadd = 2131361935;
+			
+			// aapt resource value: 0x7f0a0091
+			public const int popdelete = 2131361937;
+			
+			// aapt resource value: 0x7f0a0090
+			public const int popedit = 2131361936;
 			
 			// aapt resource value: 0x7f0a0055
 			public const int printed = 2131361877;
@@ -743,13 +818,16 @@ namespace wincom.mobile.erp
 			public const int SignIn = 2130903061;
 			
 			// aapt resource value: 0x7f030016
-			public const int spinner_item = 2130903062;
+			public const int SimpleSpinnerDropDownItemEx = 2130903062;
 			
 			// aapt resource value: 0x7f030017
-			public const int TraderInfo = 2130903063;
+			public const int spinner_item = 2130903063;
 			
 			// aapt resource value: 0x7f030018
-			public const int Translist = 2130903064;
+			public const int TraderInfo = 2130903064;
+			
+			// aapt resource value: 0x7f030019
+			public const int Translist = 2130903065;
 			
 			static Layout()
 			{
@@ -792,14 +870,14 @@ namespace wincom.mobile.erp
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f050002
-			public const int app_credits = 2131034114;
+			// aapt resource value: 0x7f060002
+			public const int app_credits = 2131099650;
 			
-			// aapt resource value: 0x7f050001
-			public const int app_descrip = 2131034113;
+			// aapt resource value: 0x7f060001
+			public const int app_descrip = 2131099649;
 			
-			// aapt resource value: 0x7f050000
-			public const int app_name = 2131034112;
+			// aapt resource value: 0x7f060000
+			public const int app_name = 2131099648;
 			
 			static String()
 			{
@@ -814,23 +892,38 @@ namespace wincom.mobile.erp
 		public partial class Style
 		{
 			
-			// aapt resource value: 0x7f080001
-			public const int XamActionBarStyle = 2131230721;
-			
-			// aapt resource value: 0x7f080000
-			public const int XamActionBarTheme = 2131230720;
+			// aapt resource value: 0x7f080009
+			public const int BlueThem = 2131230729;
 			
 			// aapt resource value: 0x7f080002
-			public const int XamActionBarTitleStyle = 2131230722;
+			public const int ButtonBlueThem = 2131230722;
 			
-			// aapt resource value: 0x7f080005
-			public const int XamButton = 2131230725;
+			// aapt resource value: 0x7f080000
+			public const int EditTextBlueThem = 2131230720;
+			
+			// aapt resource value: 0x7f080001
+			public const int SpinnerItemBlueThem = 2131230721;
 			
 			// aapt resource value: 0x7f080004
-			public const int XamSubtitleText = 2131230724;
+			public const int XamActionBarStyle = 2131230724;
 			
 			// aapt resource value: 0x7f080003
-			public const int XamTitleText = 2131230723;
+			public const int XamActionBarTheme = 2131230723;
+			
+			// aapt resource value: 0x7f080005
+			public const int XamActionBarTitleStyle = 2131230725;
+			
+			// aapt resource value: 0x7f080008
+			public const int XamButton = 2131230728;
+			
+			// aapt resource value: 0x7f080007
+			public const int XamSubtitleText = 2131230727;
+			
+			// aapt resource value: 0x7f080006
+			public const int XamTitleText = 2131230726;
+			
+			// aapt resource value: 0x7f08000a
+			public const int _BlueThem = 2131230730;
 			
 			static Style()
 			{

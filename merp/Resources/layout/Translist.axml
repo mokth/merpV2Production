@@ -13,27 +13,31 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:drawableLeft="@drawable/shop"
+            android:height="53dp"
             android:id="@+id/butInvlist" />
         <Button
             android:text="CREDIT NOTE LIST"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:drawableLeft="@drawable/shop"
+            android:drawableLeft="@drawable/bill"
+            android:height="53dp"
             android:id="@+id/butCNlist" />
         <Button
             android:text="INVOICE SUMMARY"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:drawableLeft="@drawable/print"
+            android:drawableLeft="@drawable/summary"
+            android:height="53dp"
             android:id="@+id/butInvsumm" />
         <Button
             android:text="MAIN MENU"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:drawableLeft="@drawable/left"
+            android:drawableLeft="@drawable/home"
+            android:height="53dp"
             android:id="@+id/butMain" />
     </LinearLayout>
 </ScrollView>
