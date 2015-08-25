@@ -77,6 +77,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/txtcode"
                         android:paddingLeft="5dp"
+                        android:textSize="20pt"
                         android:background="@drawable/bluethem_spinner_background_holo_light"
                         android:fitsSystemWindows="false" />
                 </LinearLayout>

@@ -277,7 +277,7 @@ namespace wincom.mobile.erp
 				}else db.Insert (inv);
 			}
 
-			spinner.SetSelection (-1);
+			//spinner.SetSelection (-1);
 			qty.Text = "";
 			//price.Text = "";
 			ttltax.Text = "";
@@ -306,6 +306,7 @@ namespace wincom.mobile.erp
 			var intent = new Intent(this, typeof(InvItemActivity));
 			intent.PutExtra ("invoiceno",INVOICENO );
 			intent.PutExtra ("custcode",CUSTCODE );
+			intent.PutExtra ("editmode",EDITMODE );
 			StartActivity(intent);
 		}
 		private void spinner_ItemSelected (object sender, AdapterView.ItemSelectedEventArgs e)

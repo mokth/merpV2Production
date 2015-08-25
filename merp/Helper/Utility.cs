@@ -51,6 +51,50 @@ namespace wincom.mobile.erp
 
 			return valid;
 		}
+
+		public static double AdjusttoNear(double amount,ref double roundVal)
+		{
+			double amt = Math.Round(amount, 2, MidpointRounding.AwayFromZero);
+			double intval = Math.Truncate(amt);
+			string decPlaces = amt.ToString("n2");
+			string[] digits = decPlaces.Split(new char[] { '.' });
+			int num0 = Convert.ToInt32(digits[1][0].ToString());
+			int num1 = Convert.ToInt32(digits[1][1].ToString());
+			string dec = "0";
+			string rdec = "0";
+			double diff = 0;
+			bool isUp = false;
+			if (num1 > 2 && num1 <= 5)
+			{
+				dec = string.Format("0.{0}{1}", num0, 5);
+				rdec = string.Format("0.0{0}", 5-num1);
+				isUp = true;
+			}
+			if (num1 <= 2)
+			{
+				dec = string.Format("0.{0}{1}", num0, 0);
+				rdec = string.Format("0.0{0}",  num1);
+				isUp = false;
+			}
+			if (num1 > 5 && num1 <= 7)
+			{
+				dec = string.Format("0.{0}{1}", num0, 5);
+				rdec = string.Format("0.0{0}", num1-5);
+				isUp = false;
+			}
+			if (num1 > 7)
+			{
+				dec = string.Format("0.{0}{1}", num0 + 1, 0);
+				rdec = string.Format("0.0{0}", 10-num1);
+				isUp = true;
+			}
+
+
+			roundVal = Convert.ToDouble(rdec) * ((!isUp)?-1:1);
+			double decval = Convert.ToDouble(dec);
+			intval = intval + decval;
+			return intval;
+		}
 	}
 }
 

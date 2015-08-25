@@ -50,7 +50,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:height="80dp"
             android:textSize="24sp"
-            android:drawableLeft="@drawable/left"
+            android:drawableLeft="@drawable/home"
             android:id="@+id/butMain" />
     </LinearLayout>
 </ScrollView>

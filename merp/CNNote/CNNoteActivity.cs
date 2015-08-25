@@ -246,8 +246,28 @@ namespace wincom.mobile.erp
 					}
 				}
 			}
+
+			if (!string.IsNullOrEmpty (inv.invno)) {
+				updateInvPrintedStatus(inv.invno);
+
+			}
 		}
 
+		void updateInvPrintedStatus(string invno)
+		{
+			using (var db = new SQLite.SQLiteConnection (pathToDatabase)) {
+				var list = db.Table<Invoice> ().Where (x => x.invno == invno).ToList<Invoice> ();
+				if (list.Count > 0) {
+					//if only contains items then allow to update the printed status.
+					//this to allow the invoice;s item can be added. if not can not be posted(upload)
+					var list2 = db.Table<InvoiceDtls> ().Where (x => x.invno == invno).ToList<InvoiceDtls> ();
+					if (list2.Count > 0) {
+						list [0].isPrinted = true;
+						db.Update (list [0]);
+					}
+				}
+			}
+		}
 		void StartPrint(CNNote inv,CNNoteDtls[] list,int noofcopy )
 		{
 			string userid = ((GlobalvarsApp)this.Application).USERID_CODE;
