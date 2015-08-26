@@ -14,6 +14,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:drawableLeft="@drawable/shop"
             android:height="53dp"
+            android:textStyle="bold"
             android:id="@+id/butInvlist" />
         <Button
             android:text="CREDIT NOTE LIST"
@@ -22,6 +23,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:drawableLeft="@drawable/bill"
             android:height="53dp"
+            android:textStyle="bold"
             android:id="@+id/butCNlist" />
         <Button
             android:text="INVOICE SUMMARY"
@@ -30,9 +32,11 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:drawableLeft="@drawable/summary"
             android:height="53dp"
+            android:textStyle="bold"
             android:id="@+id/butInvsumm" />
         <Button
             android:text="MAIN MENU"
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"

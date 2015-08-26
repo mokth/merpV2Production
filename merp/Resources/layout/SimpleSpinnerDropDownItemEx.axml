@@ -8,8 +8,6 @@
     android:singleLine="true"
     android:layout_marginLeft="2dip"
     android:layout_marginRight="5dip"
-    android:textColor="@android:color/white"
-    android:background="@drawable/bluethem_btn_default_holo_light"
     android:ellipsize="marquee"
     android:paddingRight="10dp"
     android:paddingLeft="10dp"

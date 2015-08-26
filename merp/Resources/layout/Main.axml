@@ -18,10 +18,12 @@
             android:id="@+id/butSecond"
             android:height="53dp"
             android:background="@drawable/bluethem_btn_default_holo_light"
-            android:drawableLeft="@drawable/shop" />
+            android:drawableLeft="@drawable/shop"
+            style="@style/ButtonBlueThem" />
         <Button
             android:text="CREDIT NOTE"
             android:height="53dp"
+            style="@style/ButtonBlueThem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -31,6 +33,7 @@
         <Button
             android:height="53dp"
             android:text="TRANSACTION LIST"
+            style="@style/ButtonBlueThem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -40,6 +43,7 @@
         <Button
             android:height="53dp"
             android:text="MASTER ITEM"
+            style="@style/ButtonBlueThem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -49,6 +53,7 @@
         <Button
             android:height="53dp"
             android:text="DOWNLOAD/UPLOAD"
+            style="@style/ButtonBlueThem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -58,6 +63,7 @@
         <Button
             android:height="53dp"
             android:text="SETTINGS"
+            style="@style/ButtonBlueThem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -67,6 +73,7 @@
         <Button
             android:height="53dp"
             android:text="ABOUT"
+            style="@style/ButtonBlueThem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -76,6 +83,7 @@
         <Button
             android:height="53dp"
             android:text="EXIT"
+            style="@style/ButtonBlueThem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"

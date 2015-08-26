@@ -15,11 +15,13 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/butSecond"
             android:textSize="24sp"
+            style="@style/ButtonBlueThem"
             android:height="80dp"
             android:drawableLeft="@drawable/shop" />
         <Button
             android:background="@drawable/bluethem_btn_default_holo_light"
             android:text="CREDIT NOTE"
+            style="@style/ButtonBlueThem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -30,6 +32,7 @@
         <Button
             android:background="@drawable/bluethem_btn_default_holo_light"
             android:text="TRANSACTION LIST"
+            style="@style/ButtonBlueThem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -40,6 +43,7 @@
         <Button
             android:background="@drawable/bluethem_btn_default_holo_light"
             android:text="MASTER ITEM"
+            style="@style/ButtonBlueThem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -50,6 +54,7 @@
         <Button
             android:background="@drawable/bluethem_btn_default_holo_light"
             android:text="DOWNLOAD/UPLOAD"
+            style="@style/ButtonBlueThem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -60,6 +65,7 @@
         <Button
             android:background="@drawable/bluethem_btn_default_holo_light"
             android:text="SETTINGS"
+            style="@style/ButtonBlueThem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -70,6 +76,7 @@
         <Button
             android:background="@drawable/bluethem_btn_default_holo_light"
             android:text="ABOUT"
+            style="@style/ButtonBlueThem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -80,6 +87,7 @@
         <Button
             android:background="@drawable/bluethem_btn_default_holo_light"
             android:text="EXIT"
+            style="@style/ButtonBlueThem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"

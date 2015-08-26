@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- Generated with http://android-holo-colors.com -->
+<!-- Generated with http://android-holo-colors.com   Theme.AppCompat.Light.DarkActionBar Theme.Holo.Light -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
   <style name="BlueThem" parent="@style/_BlueThem"/>
