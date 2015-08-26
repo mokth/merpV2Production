@@ -55,8 +55,8 @@ namespace wincom.mobile.erp
 //			butCustProf.Click+=  butCustomerClick;
 			Button butlogOff = FindViewById<Button> (Resource.Id.butOut);
 			butlogOff.Click += ButlogOff_Click;
-			Button butAbt = FindViewById<Button> (Resource.Id.butAbout);
-			butAbt.Click+= ButAbt_Click;
+//			Button butAbt = FindViewById<Button> (Resource.Id.butAbout);
+//			butAbt.Click+= ButAbt_Click;
 //			Button butupload = FindViewById<Button> (Resource.Id.butupload);
 //			butupload.Click += butUploadBills;
 			//Button butExitOnly = FindViewById<Button> (Resource.Id.butExitOnly);
@@ -315,7 +315,7 @@ namespace wincom.mobile.erp
 		}
 		void butSetting(object sender,EventArgs e)
 		{
-			StartActivity (typeof(SettingActivity));
+			StartActivity (typeof(UtilityActivity));
 		}
 //		void butDownloadCusts(object sender,EventArgs e)
 //		{

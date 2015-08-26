@@ -126,6 +126,7 @@
     <Compile Include="DateRangeDialog.cs" />
     <Compile Include="Helper\DatePicker.cs" />
     <Compile Include="Activities\DateRange.cs" />
+    <Compile Include="Activities\UtilityActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -379,6 +380,8 @@
     <AndroidResource Include="Resources\drawable-xhdpi\home.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\home.png" />
     <AndroidResource Include="Resources\drawable-xxxhdpi\home.png" />
+    <AndroidResource Include="Resources\layout\Settings.axml" />
+    <AndroidResource Include="Resources\layout-large-port\Settings.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup />

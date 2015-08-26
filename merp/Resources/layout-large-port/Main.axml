@@ -83,7 +83,8 @@
             android:height="80dp"
             android:textSize="24sp"
             android:drawableLeft="@drawable/about"
-            android:id="@+id/butAbout" />
+            android:id="@+id/butAbout"
+            android:visibility="gone" />
         <Button
             android:background="@drawable/bluethem_btn_default_holo_light"
             android:text="EXIT"

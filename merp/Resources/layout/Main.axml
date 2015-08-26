@@ -79,7 +79,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:drawableLeft="@drawable/about"
             android:background="@drawable/bluethem_btn_default_holo_light"
-            android:id="@+id/butAbout" />
+            android:id="@+id/butAbout"
+            android:visibility="gone" />
         <Button
             android:height="53dp"
             android:text="EXIT"
